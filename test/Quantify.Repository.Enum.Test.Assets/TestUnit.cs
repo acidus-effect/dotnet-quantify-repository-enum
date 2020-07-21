@@ -1,6 +1,6 @@
 ﻿using Quantify.Repository.Enum.DataAnnotation;
 
-namespace Quantify.Repository.Enum.UnitTests.Assets
+namespace Quantify.Repository.Enum.Test.Assets
 {
     public enum TestUnit
     {

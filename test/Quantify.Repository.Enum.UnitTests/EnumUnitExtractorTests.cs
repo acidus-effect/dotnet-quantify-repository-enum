@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Quantify.Repository.Enum.DataAnnotation;
-using Quantify.Repository.Enum.UnitTests.Assets;
+using Quantify.Repository.Enum.Test.Assets;
 using Quantify.Repository.Enum.ValueParser;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -71,7 +71,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_UnitTypeArgumentIsNotEnum_WHEN_Constructing_THEN_ThrowException()
+        public void WHILE_UnitTypeArgumentIsNotEnum_WHEN_Instantiating_THEN_ThrowException()
         {
             // Arrange
             var stringValueParserMock = new Mock<StringValueParser<double>>();

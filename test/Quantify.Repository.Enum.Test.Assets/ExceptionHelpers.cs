@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Quantify.Repository.Enum.UnitTests.Assets
+namespace Quantify.Repository.Enum.Test.Assets
 {
     public static class ExceptionHelpers
     {

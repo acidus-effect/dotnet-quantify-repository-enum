@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Quantify.Repository.Enum.UnitTests.Assets;
+using Quantify.Repository.Enum.Test.Assets;
 using Quantify.Repository.Enum.ValueParser;
 
 namespace Quantify.Repository.Enum.UnitTests.ValueParser
