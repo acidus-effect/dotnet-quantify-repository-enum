@@ -78,5 +78,25 @@ namespace Quantify.Repository.Enum.Test.Assets
                 }
             );
         }
+
+        public static void ExpectNoException(Action actionCallback)
+        {
+            ExpectNoExceptionAsync(() => Task.Run(() => actionCallback())).Wait();
+        }
+
+        public static async Task ExpectNoExceptionAsync(Func<Task> actionCallback)
+        {
+            if (actionCallback == null)
+                throw new ArgumentNullException(nameof(actionCallback));
+
+            try
+            {
+                await actionCallback();
+            }
+            catch (Exception exception)
+            {
+                Assert.IsTrue(false, $"Unexpected exception of type '{exception.GetType().FullName}' was thrown. No exception was expected to be thrown.");
+            }
+        }
     }
 }
