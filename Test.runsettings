@@ -11,7 +11,7 @@
               <Exclude>
                 <ModulePath>.*\.UnitTests.dll</ModulePath>
                 <ModulePath>.*\.IntegrationTests.dll</ModulePath>
-                <ModulePath>.*\Quantify.Repository.Enum.Test.Shared.dll</ModulePath>
+                <ModulePath>.*\Quantify.Repository.Enum.Test.Assets.dll</ModulePath>
                 <ModulePath>.*\Quantify.dll</ModulePath>
               </Exclude>
             </ModulePaths>

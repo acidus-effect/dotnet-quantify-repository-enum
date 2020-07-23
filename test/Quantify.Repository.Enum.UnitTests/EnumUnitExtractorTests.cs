@@ -85,7 +85,7 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory().Build<double>();
-            var enumUnitExtractor = new EnumUnitExtractor<double, InvalidTestEnum_MissingAttribute>(stringValueParser);
+            var enumUnitExtractor = new EnumUnitExtractor<double, TestUnit_MissingAttribute>(stringValueParser);
 
             ExceptionHelpers.ExpectException<InvalidUnitEnumException>(
                 // Act
@@ -104,7 +104,7 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory().Build<double>();
-            var enumUnitExtractor = new EnumUnitExtractor<double, InvalidTestEnum_MissingBaseUnit>(stringValueParser);
+            var enumUnitExtractor = new EnumUnitExtractor<double, TestUnit_MissingBaseUnit>(stringValueParser);
 
             ExceptionHelpers.ExpectException<InvalidUnitEnumException>(
                 // Act
@@ -123,7 +123,7 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory().Build<double>();
-            var enumUnitExtractor = new EnumUnitExtractor<double, InvalidTestEnum_MultipleBaseUnits>(stringValueParser);
+            var enumUnitExtractor = new EnumUnitExtractor<double, TestUnit_MultipleBaseUnits>(stringValueParser);
 
             ExceptionHelpers.ExpectException<InvalidUnitEnumException>(
                 // Act
@@ -142,7 +142,7 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory().Build<double>();
-            var enumUnitExtractor = new EnumUnitExtractor<double, InvalidTestEnum_BaseUnitAlsoUnit>(stringValueParser);
+            var enumUnitExtractor = new EnumUnitExtractor<double, TestUnit_BaseUnitAlsoUnit>(stringValueParser);
 
             ExceptionHelpers.ExpectException<InvalidUnitEnumException>(
                 // Act
@@ -161,7 +161,7 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory().Build<double>();
-            var enumUnitExtractor = new EnumUnitExtractor<double, InvalidTestEnum_MultiIssues>(stringValueParser);
+            var enumUnitExtractor = new EnumUnitExtractor<double, TestUnit_MultiIssues>(stringValueParser);
 
             ExceptionHelpers.ExpectException<InvalidUnitEnumException>(
                 // Act
@@ -172,96 +172,6 @@ namespace Quantify.Repository.Enum.UnitTests
                     Assert.IsTrue(exception.Message.Contains("The following issues were encountered while attempting to process the provided unit enum:"));
                 }
             );
-        }
-
-        private enum InvalidTestEnum_MissingAttribute
-        {
-            [QuantityUnit("0.001")]
-            Millimetre = 17,
-            [QuantityUnit("0.01")]
-            Centimetre = 18,
-            Decimetre = 19,
-            [QuantityBaseUnit]
-            Metre = 20,
-            [QuantityUnit("10")]
-            Decametre = 21,
-            [QuantityUnit("100")]
-            Hectometre = 22,
-            [QuantityUnit("1000")]
-            Kilometre = 23,
-        }
-
-        private enum InvalidTestEnum_MissingBaseUnit
-        {
-            [QuantityUnit("0.001")]
-            Millimetre = 17,
-            [QuantityUnit("0.01")]
-            Centimetre = 18,
-            [QuantityUnit("0.1")]
-            Decimetre = 19,
-            [QuantityUnit("1")]
-            Metre = 20,
-            [QuantityUnit("10")]
-            Decametre = 21,
-            [QuantityUnit("100")]
-            Hectometre = 22,
-            [QuantityUnit("1000")]
-            Kilometre = 23,
-        }
-
-        private enum InvalidTestEnum_MultipleBaseUnits
-        {
-            [QuantityUnit("0.001")]
-            Millimetre = 17,
-            [QuantityUnit("0.01")]
-            Centimetre = 18,
-            [QuantityUnit("0.1")]
-            Decimetre = 19,
-            [QuantityBaseUnit]
-            Metre = 20,
-            [QuantityUnit("10")]
-            Decametre = 21,
-            [QuantityBaseUnit]
-            Hectometre = 22,
-            [QuantityUnit("1000")]
-            Kilometre = 23,
-        }
-
-        private enum InvalidTestEnum_BaseUnitAlsoUnit
-        {
-            [QuantityUnit("0.001")]
-            Millimetre = 17,
-            [QuantityUnit("0.01")]
-            Centimetre = 18,
-            [QuantityUnit("0.1")]
-            Decimetre = 19,
-            [QuantityUnit("1")]
-            [QuantityBaseUnit]
-            Metre = 20,
-            [QuantityUnit("10")]
-            Decametre = 21,
-            [QuantityUnit("100")]
-            Hectometre = 22,
-            [QuantityUnit("1000")]
-            Kilometre = 23,
-        }
-
-        private enum InvalidTestEnum_MultiIssues
-        {
-            [QuantityUnit("0.001")]
-            Millimetre = 17,
-            Centimetre = 18,
-            [QuantityUnit("0.1")]
-            Decimetre = 19,
-            [QuantityUnit("1")]
-            [QuantityBaseUnit]
-            Metre = 20,
-            [QuantityUnit("10")]
-            Decametre = 21,
-            [QuantityUnit("100")]
-            Hectometre = 22,
-            [QuantityUnit("1000")]
-            Kilometre = 23,
         }
     }
 }

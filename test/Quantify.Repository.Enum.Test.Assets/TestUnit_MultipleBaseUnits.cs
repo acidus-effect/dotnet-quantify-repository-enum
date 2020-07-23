@@ -2,10 +2,8 @@
 
 namespace Quantify.Repository.Enum.Test.Assets
 {
-    public enum TestUnit
+    public enum TestUnit_MultipleBaseUnits
     {
-        [QuantityUnit("0.000001")]
-        Micrometre = 16,
         [QuantityUnit("0.001")]
         Millimetre = 17,
         [QuantityUnit("0.01")]
@@ -16,7 +14,7 @@ namespace Quantify.Repository.Enum.Test.Assets
         Metre = 20,
         [QuantityUnit("10")]
         Decametre = 21,
-        [QuantityUnit("100")]
+        [QuantityBaseUnit]
         Hectometre = 22,
         [QuantityUnit("1000")]
         Kilometre = 23
