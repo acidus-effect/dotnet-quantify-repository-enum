@@ -11,10 +11,10 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         public void WHILE_ArgumentTypeDouble_WHEN_BuildingValueParser_THEN_ReturnDoubleStringValueParser()
         {
             // Arrange
-            var stringValueParserFactory = new StringValueParserFactory();
+            var stringValueParserFactory = new StringValueParserFactory<double>();
 
             // Act
-            var stringValueParser = stringValueParserFactory.Build<double>();
+            var stringValueParser = stringValueParserFactory.Build();
 
             // Assert
             Assert.IsInstanceOfType(stringValueParser, typeof(StringToDoubleValueParser));
@@ -24,10 +24,10 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         public void WHILE_ArgumentTypeDecimal_WHEN_BuildingValueParser_THEN_ReturnDecimalStringValueParser()
         {
             // Arrange
-            var stringValueParserFactory = new StringValueParserFactory();
+            var stringValueParserFactory = new StringValueParserFactory<decimal>();
 
             // Act
-            var stringValueParser = stringValueParserFactory.Build<decimal>();
+            var stringValueParser = stringValueParserFactory.Build();
 
             // Assert
             Assert.IsInstanceOfType(stringValueParser, typeof(StringToDecimalValueParser));
@@ -37,11 +37,11 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         public void WHILE_InvalidArgumentType_WHEN_BuildingValueParser_THEN_ThrowException()
         {
             // Arrange
-            var stringValueParserFactory = new StringValueParserFactory();
+            var stringValueParserFactory = new StringValueParserFactory<string>();
 
             ExceptionHelpers.ExpectException<GenericArgumentException>(
                 // Act
-                () => stringValueParserFactory.Build<string>(),
+                () => stringValueParserFactory.Build(),
                 // Assert
                 (exception) =>
                 {

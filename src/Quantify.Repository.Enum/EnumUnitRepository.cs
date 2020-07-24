@@ -18,7 +18,7 @@ namespace Quantify.Repository.Enum
 
         public static EnumUnitRepository<TValue, TUnit>  CreateInstance()
         {
-            var stringValueParserFactory = new StringValueParserFactory().Build<TValue>();
+            var stringValueParserFactory = new StringValueParserFactory<TValue>().Build();
             var enumUnitExtractor = new EnumUnitExtractor<TValue, TUnit>(stringValueParserFactory);
 
             return new EnumUnitRepository<TValue, TUnit>(enumUnitExtractor);

@@ -1,8 +1,8 @@
 ﻿namespace Quantify.Repository.Enum.ValueParser
 {
-    internal sealed class StringValueParserFactory
+    internal sealed class StringValueParserFactory<TValue>
     {
-        public StringValueParser<TValue> Build<TValue>()
+        public StringValueParser<TValue> Build()
         {
             if (typeof(TValue) == typeof(double))
                 return (StringValueParser<TValue>)new StringToDoubleValueParser();
