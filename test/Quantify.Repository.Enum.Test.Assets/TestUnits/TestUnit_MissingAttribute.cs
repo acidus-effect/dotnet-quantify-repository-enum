@@ -4,18 +4,18 @@ namespace Quantify.Repository.Enum.Test.Assets
 {
     public enum TestUnit_MissingAttribute
     {
-        [QuantityUnit("0.001")]
+        [Unit("0.001")]
         Millimetre = 17,
-        [QuantityUnit("0.01")]
+        [Unit("0.01")]
         Centimetre = 18,
         Decimetre = 19,
-        [QuantityBaseUnit]
+        [BaseUnit]
         Metre = 20,
-        [QuantityUnit("10")]
+        [Unit("10")]
         Decametre = 21,
-        [QuantityUnit("100")]
+        [Unit("100")]
         Hectometre = 22,
-        [QuantityUnit("1000")]
+        [Unit("1000")]
         Kilometre = 23
     }
 }

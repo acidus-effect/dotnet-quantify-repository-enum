@@ -3,11 +3,11 @@
 namespace Quantify.Repository.Enum.DataAnnotation
 {
     [AttributeUsage(AttributeTargets.Field)]
-    public sealed class QuantityUnitAttribute : Attribute
+    public sealed class UnitAttribute : Attribute
     {
         public string ConversionValue { get; }
 
-        public QuantityUnitAttribute(string conversionRate)
+        public UnitAttribute(string conversionRate)
         {
             ConversionValue = conversionRate;
         }

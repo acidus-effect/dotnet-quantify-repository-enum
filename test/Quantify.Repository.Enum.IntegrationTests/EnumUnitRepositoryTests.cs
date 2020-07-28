@@ -20,8 +20,9 @@ namespace Quantify.Repository.Enum.IntegrationTests
             foreach (var unit in System.Enum.GetValues(typeof(TestUnit)).OfType<TestUnit>())
             {
                 var attributes = enumType.GetField(System.Enum.GetName(enumType, unit)).GetCustomAttributes(false);
-                var quantityUnit = attributes.FirstOrDefault(attribute => attribute is QuantityUnitAttribute) as QuantityUnitAttribute;
-                var quantityBaseUnit = attributes.FirstOrDefault(attribute => attribute is QuantityBaseUnitAttribute) as QuantityBaseUnitAttribute;
+
+                var unitAttribute = attributes.FirstOrDefault(attribute => attribute is UnitAttribute) as UnitAttribute;
+                var baseUnitAttribute = attributes.FirstOrDefault(attribute => attribute is BaseUnitAttribute) as BaseUnitAttribute;
 
                 var unitData = enumUnitRepository.GetUnit(unit);
 
@@ -31,15 +32,15 @@ namespace Quantify.Repository.Enum.IntegrationTests
                     break;
                 }
 
-                if (quantityUnit != null && quantityBaseUnit == null)
+                if (unitAttribute != null && baseUnitAttribute == null)
                 {
-                    Assert.AreEqual(double.Parse(quantityUnit.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture), unitData.Value);
+                    Assert.AreEqual(double.Parse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture), unitData.Value);
                 }
-                else if (quantityUnit == null && quantityBaseUnit != null)
+                else if (unitAttribute == null && baseUnitAttribute != null)
                 {
                     Assert.AreEqual(1, unitData.Value);
                 }
-                else if (quantityUnit == null && quantityBaseUnit == null)
+                else if (unitAttribute == null && baseUnitAttribute == null)
                 {
                     Assert.IsTrue(false, $"The enum unit {unit} doesn't have neither a unit value nor a base unit marker.");
                     break;

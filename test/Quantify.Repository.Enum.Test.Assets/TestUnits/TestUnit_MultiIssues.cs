@@ -4,19 +4,19 @@ namespace Quantify.Repository.Enum.Test.Assets
 {
     public enum TestUnit_MultiIssues
     {
-        [QuantityUnit("0.001")]
+        [Unit("0.001")]
         Millimetre = 17,
         Centimetre = 18,
-        [QuantityUnit("0.1")]
+        [Unit("0.1")]
         Decimetre = 19,
-        [QuantityUnit("1")]
-        [QuantityBaseUnit]
+        [Unit("1")]
+        [BaseUnit]
         Metre = 20,
-        [QuantityUnit("10")]
+        [Unit("10")]
         Decametre = 21,
-        [QuantityUnit("100")]
+        [Unit("100")]
         Hectometre = 22,
-        [QuantityUnit("1000")]
+        [Unit("1000")]
         Kilometre = 23
     }
 }

@@ -31,25 +31,25 @@ namespace Quantify.Repository.Enum
             {
                 var attributes = enumType.GetField(System.Enum.GetName(enumType, unit)).GetCustomAttributes(false);
 
-                var quantityUnit = attributes.FirstOrDefault(attribute => attribute is QuantityUnitAttribute) as QuantityUnitAttribute;
-                var quantityBaseUnit = attributes.FirstOrDefault(attribute => attribute is QuantityBaseUnitAttribute) as QuantityBaseUnitAttribute;
+                var unitAttribute = attributes.FirstOrDefault(attribute => attribute is UnitAttribute) as UnitAttribute;
+                var baseUnitAttribute = attributes.FirstOrDefault(attribute => attribute is BaseUnitAttribute) as BaseUnitAttribute;
 
-                if (quantityUnit == null && quantityBaseUnit == null)
+                if (unitAttribute == null && baseUnitAttribute == null)
                     extractionStatus.ValueIsMissingBothAttributes = true;
 
-                if (quantityUnit != null && quantityBaseUnit != null)
+                if (unitAttribute != null && baseUnitAttribute != null)
                     extractionStatus.HasBothAttributes = true;
 
-                if (quantityBaseUnit != null && extractionStatus.HasBaseUnit)
+                if (baseUnitAttribute != null && extractionStatus.HasBaseUnit)
                     extractionStatus.HasMultipleBaseUnits = true;
 
-                if (quantityBaseUnit != null)
+                if (baseUnitAttribute != null)
                     extractionStatus.HasBaseUnit = true;
 
-                if (quantityUnit != null)
-                    unitDictionary[unit] = stringValueParser.Parse(quantityUnit.ConversionValue);
+                if (unitAttribute != null)
+                    unitDictionary[unit] = stringValueParser.Parse(unitAttribute.ConversionValue);
 
-                if (quantityBaseUnit != null)
+                if (baseUnitAttribute != null)
                     unitDictionary[unit] = stringValueParser.Parse(1.ToString());
             }
 

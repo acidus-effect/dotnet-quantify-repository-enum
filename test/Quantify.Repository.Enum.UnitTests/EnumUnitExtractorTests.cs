@@ -50,14 +50,14 @@ namespace Quantify.Repository.Enum.UnitTests
             {
                 var attributes = enumType.GetField(System.Enum.GetName(enumType, expectedUnit)).GetCustomAttributes(false);
 
-                var quantityUnit = attributes.FirstOrDefault(attribute => attribute is QuantityUnitAttribute) as QuantityUnitAttribute;
-                var quantityBaseUnit = attributes.FirstOrDefault(attribute => attribute is QuantityBaseUnitAttribute) as QuantityBaseUnitAttribute;
+                var unitAttribute = attributes.FirstOrDefault(attribute => attribute is UnitAttribute) as UnitAttribute;
+                var baseUnitAttribute = attributes.FirstOrDefault(attribute => attribute is BaseUnitAttribute) as BaseUnitAttribute;
 
-                if (quantityUnit != null)
+                if (unitAttribute != null)
                 {
-                    expectedUnitValueDictionary.Add(expectedUnit, double.Parse(quantityUnit.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture));
+                    expectedUnitValueDictionary.Add(expectedUnit, double.Parse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture));
                 }
-                else if (quantityBaseUnit != null)
+                else if (baseUnitAttribute != null)
                 {
                     expectedUnitValueDictionary.Add(expectedUnit, 1);
                 }
