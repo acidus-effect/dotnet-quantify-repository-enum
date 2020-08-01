@@ -7,7 +7,7 @@ namespace Quantify.Repository.Enum.UnitTests
     public class EnumUnitDataTests
     {
         [TestMethod]
-        public void WHILE_ArgumentsAreValid_WHEN_Instantiating_THEN_CreateInstance()
+        public void WHEN_Instantiating_WHILE_ArgumentsAreValid_THEN_CreateInstance()
         {
             // Arrange
             const TestUnit expectedUnit = TestUnit.Decimetre;
@@ -22,7 +22,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_ArgumentIsNull_WHEN_Instantiating_THEN_ThrowException()
+        public void WHEN_Instantiating_WHILE_ArgumentIsNull_THEN_ThrowException()
         {
             // Arrange
             const string unit = "";

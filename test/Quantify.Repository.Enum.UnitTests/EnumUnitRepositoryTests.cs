@@ -10,7 +10,7 @@ namespace Quantify.Repository.Enum.UnitTests
     public class EnumUnitRepositoryTests
     {
         [TestMethod]
-        public void WHILE_ArgumentsAreValid_WHEN_Instantiating_THEN_CreateInstance()
+        public void WHEN_Instantiating_WHILE_ArgumentsAreValid_THEN_CreateInstance()
         {
             // Arrange
             var stringValueParserMock = new Mock<StringValueParser<double>>();
@@ -26,14 +26,14 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_ArgumentIsNull_WHEN_Instantiating_THEN_ThrowException()
+        public void WHEN_Instantiating_WHILE_ArgumentIsNull_THEN_ThrowException()
         {
             // Arrange & Act & Assert
             ExceptionHelpers.ExpectArgumentNullException("enumUnitExtractor", () => new EnumUnitRepository<double, TestUnit>(null));
         }
 
         [TestMethod]
-        public void WHILE_UnitExists_WHEN_GettingUnitData_THEN_ReturnCorrectUnitData()
+        public void WHEN_GettingUnitData_WHILE_UnitExists_THEN_ReturnCorrectUnitData()
         {
             // Arrange
             var stringValueParserMock = new Mock<StringValueParser<double>>();
@@ -56,7 +56,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_UnitDoesNotExists_WHEN_GettingUnitData_THEN_ReturnCorrectUnitData()
+        public void WHEN_GettingUnitData_WHILE_UnitDoesNotExists_THEN_ReturnCorrectUnitData()
         {
             // Arrange
             var stringValueParserMock = new Mock<StringValueParser<double>>();

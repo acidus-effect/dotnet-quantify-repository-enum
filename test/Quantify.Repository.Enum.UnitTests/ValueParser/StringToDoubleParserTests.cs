@@ -9,7 +9,7 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
     public class StringToDoubleParserTests
     {
         [TestMethod]
-        public void WHILE_ArgumentIsNull_WHEN_ParsingValue_THEN_ThrowException()
+        public void WHEN_ParsingValue_WHILE_ArgumentIsNull_THEN_ThrowException()
         {
             // Arrange
             var valueCalculator = new StringToDoubleValueParser();
@@ -19,7 +19,7 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         }
 
         [TestMethod]
-        public void WHILE_StringIsEmpty_WHEN_ParsingValue_THEN_ThrowException()
+        public void WHEN_ParsingValue_WHILE_StringIsEmpty_THEN_ThrowException()
         {
             // Arrange
             var valueCalculator = new StringToDoubleValueParser();
@@ -29,7 +29,7 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         }
 
         [TestMethod]
-        public void WHILE_StringContainsOnlyWhitespaces_WHEN_ParsingValue_THEN_ThrowException()
+        public void WHEN_ParsingValue_WHILE_StringContainsOnlyWhitespaces_THEN_ThrowException()
         {
             // Arrange
             var valueCalculator = new StringToDoubleValueParser();
@@ -39,7 +39,7 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         }
 
         [TestMethod]
-        public void WHILE_StringContainsText_WHEN_ParsingValue_THEN_ThrowException()
+        public void WHEN_ParsingValue_WHILE_StringContainsText_THEN_ThrowException()
         {
             // Arrange
             var valueCalculator = new StringToDoubleValueParser();
@@ -52,7 +52,7 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         [DataRow("23.658", 23.658)]
         [DataRow("-65.8745", -65.8745)]
         [DataRow("0", 0)]
-        public void WHILE_ValueStringIsValid_WHEN_ParsingValue_THEN_ReturnCorrectDouble(string valueString, double expectedValue)
+        public void WHEN_ParsingValue_WHILE_ValueStringIsValid_THEN_ReturnCorrectDouble(string valueString, double expectedValue)
         {
             // Arrange
             var valueCalculator = new StringToDoubleValueParser();

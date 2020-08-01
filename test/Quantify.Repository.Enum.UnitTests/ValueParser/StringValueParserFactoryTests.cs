@@ -8,7 +8,7 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
     public class StringValueParserFactoryTests
     {
         [TestMethod]
-        public void WHILE_ArgumentTypeDouble_WHEN_BuildingValueParser_THEN_ReturnDoubleStringValueParser()
+        public void WHEN_BuildingValueParser_WHILE_ArgumentTypeDouble_THEN_ReturnDoubleStringValueParser()
         {
             // Arrange
             var stringValueParserFactory = new StringValueParserFactory<double>();
@@ -21,7 +21,7 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         }
 
         [TestMethod]
-        public void WHILE_ArgumentTypeDecimal_WHEN_BuildingValueParser_THEN_ReturnDecimalStringValueParser()
+        public void WHEN_BuildingValueParser_WHILE_ArgumentTypeDecimal_THEN_ReturnDecimalStringValueParser()
         {
             // Arrange
             var stringValueParserFactory = new StringValueParserFactory<decimal>();
@@ -34,7 +34,7 @@ namespace Quantify.Repository.Enum.UnitTests.ValueParser
         }
 
         [TestMethod]
-        public void WHILE_InvalidArgumentType_WHEN_BuildingValueParser_THEN_ThrowException()
+        public void WHEN_BuildingValueParser_WHILE_InvalidArgumentType_THEN_ThrowException()
         {
             // Arrange
             var stringValueParserFactory = new StringValueParserFactory<string>();

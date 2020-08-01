@@ -10,7 +10,7 @@ namespace Quantify.Repository.Enum.IntegrationTests
     public class EnumUnitRepositoryTests
     {
         [TestMethod]
-        public void WHILE_UnitEnumIsValid_WHEN_ReadingAllUnit_THEN_AllUnitsHasCorrectValue()
+        public void WHEN_ReadingAllUnit_WHILE_UnitEnumIsValid_THEN_AllUnitsHasCorrectValue()
         {
             // Act
             var enumUnitRepository = EnumUnitRepository<double, TestUnit>.CreateInstance();
@@ -54,14 +54,14 @@ namespace Quantify.Repository.Enum.IntegrationTests
         }
 
         [TestMethod]
-        public void WHILE_UnitIsNotAnEnum_WHEN_Instantiating_THEN_ThrowException()
+        public void WHEN_Instantiating_WHILE_UnitIsNotAnEnum_THEN_ThrowException()
         {
             // Act & Assert
             ExceptionHelpers.ExpectException<GenericArgumentException>(() => EnumUnitRepository<double, int>.CreateInstance());
         }
 
         [TestMethod]
-        public void WHILE_UnitEnumHasErrors_WHEN_Instantiating_THEN_ThrowException()
+        public void WHEN_Instantiating_WHILE_UnitEnumHasErrors_THEN_ThrowException()
         {
             // Act & Assert
             ExceptionHelpers.ExpectException<InvalidUnitEnumException>(() => EnumUnitRepository<double, TestUnit_MissingAttribute>.CreateInstance());

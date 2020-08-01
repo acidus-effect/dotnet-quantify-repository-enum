@@ -14,7 +14,7 @@ namespace Quantify.Repository.Enum.UnitTests
     public class EnumUnitExtractorTests
     {
         [TestMethod]
-        public void WHILE_ArgumentsAreValid_WHEN_Instantiating_THEN_CreateInstance()
+        public void WHEN_Instantiating_WHILE_ArgumentsAreValid_THEN_CreateInstance()
         {
             // Arrange
             var stringValueParser = new Mock<StringValueParser<double>>().Object;
@@ -27,7 +27,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_ArgumentIsNull_WHEN_Instantiating_THEN_ThrowException()
+        public void WHEN_Instantiating_WHILE_ArgumentIsNull_THEN_ThrowException()
         {
             // Arrange
             StringValueParser<double> stringValueParser = null;
@@ -37,7 +37,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_EnumIsValid_WHEN_ExtractingValues_THEN_ReturnUnitDictionary()
+        public void WHEN_ExtractingValues_WHILE_EnumIsValid_THEN_ReturnUnitDictionary()
         {
             //Arrange
             var stringValueParser = new StringValueParserFactory<double>().Build();
@@ -71,7 +71,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_UnitTypeArgumentIsNotEnum_WHEN_Instantiating_THEN_ThrowException()
+        public void WHEN_Instantiating_WHILE_UnitTypeArgumentIsNotEnum_THEN_ThrowException()
         {
             // Arrange
             var stringValueParserMock = new Mock<StringValueParser<double>>();
@@ -81,7 +81,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_UnitEnumHasValueWithoutAttribute_WHEN_ExtractingValues_THEN_ThrowException()
+        public void WHEN_ExtractingValues_WHILE_UnitEnumHasValueWithoutAttribute_THEN_ThrowException()
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory<double>().Build();
@@ -100,7 +100,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_UnitEnumHasNoBaseUnit_WHEN_ExtractingValues_THEN_ThrowException()
+        public void WHEN_ExtractingValues_WHILE_UnitEnumHasNoBaseUnit_THEN_ThrowException()
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory<double>().Build();
@@ -119,7 +119,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_UnitEnumHasMultipleBaseUnits_WHEN_ExtractingValues_THEN_ThrowException()
+        public void WHEN_ExtractingValues_WHILE_UnitEnumHasMultipleBaseUnits_THEN_ThrowException()
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory<double>().Build();
@@ -138,7 +138,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_UnitEnumHasValueDefinedAsBothUnitAndBaseUnit_WHEN_ExtractingValues_THEN_ThrowException()
+        public void WHEN_ExtractingValues_WHILE_UnitEnumHasValueDefinedAsBothUnitAndBaseUnit_THEN_ThrowException()
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory<double>().Build();
@@ -157,7 +157,7 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHILE_UnitEnumHasMultipleIssues_WHEN_ExtractingValues_THEN_ThrowException()
+        public void WHEN_ExtractingValues_WHILE_UnitEnumHasMultipleIssues_THEN_ThrowException()
         {
             // Arrange
             var stringValueParser = new StringValueParserFactory<double>().Build();

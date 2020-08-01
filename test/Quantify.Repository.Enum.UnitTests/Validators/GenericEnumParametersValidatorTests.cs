@@ -8,7 +8,7 @@ namespace Quantify.Repository.Enum.UnitTests.Validators
     public class GenericEnumParametersValidatorTests
     {
         [TestMethod]
-        public void WHILE_TypeIsEnum_WHEN_ValidatingIfArgumentIsOfTypeEnum_THEN_ReturnTrue()
+        public void WHEN_ValidatingIfArgumentIsOfTypeEnum_WHILE_TypeIsEnum_THEN_ReturnTrue()
         {
             // Arrange
             var genericEnumParametersValidator = new GenericEnumParametersValidator();
@@ -21,7 +21,7 @@ namespace Quantify.Repository.Enum.UnitTests.Validators
         }
 
         [TestMethod]
-        public void WHILE_TypeIsInt_WHEN_ValidatingIfArgumentIsOfTypeEnum_THEN_ReturnFalse()
+        public void WHEN_ValidatingIfArgumentIsOfTypeEnum_WHILE_TypeIsInt_THEN_ReturnFalse()
         {
             // Arrange
             var genericEnumParametersValidator = new GenericEnumParametersValidator();
@@ -34,7 +34,7 @@ namespace Quantify.Repository.Enum.UnitTests.Validators
         }
 
         [TestMethod]
-        public void WHILE_TypeIsLong_WHEN_ValidatingIfArgumentIsOfTypeEnum_THEN_ReturnFalse()
+        public void WHEN_ValidatingIfArgumentIsOfTypeEnum_WHILE_TypeIsLong_THEN_ReturnFalse()
         {
             // Arrange
             var genericEnumParametersValidator = new GenericEnumParametersValidator();
@@ -47,7 +47,7 @@ namespace Quantify.Repository.Enum.UnitTests.Validators
         }
 
         [TestMethod]
-        public void WHILE_TypeIsDecimal_WHEN_ValidatingIfArgumentIsOfTypeEnum_THEN_ReturnFalse()
+        public void WHEN_ValidatingIfArgumentIsOfTypeEnum_WHILE_TypeIsDecimal_THEN_ReturnFalse()
         {
             // Arrange
             var genericEnumParametersValidator = new GenericEnumParametersValidator();
@@ -60,7 +60,7 @@ namespace Quantify.Repository.Enum.UnitTests.Validators
         }
 
         [TestMethod]
-        public void WHILE_TypeIsDouble_WHEN_ValidatingIfArgumentIsOfTypeEnum_THEN_ReturnFalse()
+        public void WHEN_ValidatingIfArgumentIsOfTypeEnum_WHILE_TypeIsDouble_THEN_ReturnFalse()
         {
             // Arrange
             var genericEnumParametersValidator = new GenericEnumParametersValidator();

@@ -14,9 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Test.runsettings = Test.runsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quantify.Repository.Enum.IntegrationTests", "test\Quantify.Repository.Enum.IntegrationTests\Quantify.Repository.Enum.IntegrationTests.csproj", "{138EF6B4-39E2-44DA-AAEE-443DF7870A86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quantify.Repository.Enum.IntegrationTests", "test\Quantify.Repository.Enum.IntegrationTests\Quantify.Repository.Enum.IntegrationTests.csproj", "{138EF6B4-39E2-44DA-AAEE-443DF7870A86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quantify.Repository.Enum.Test.Assets", "test\Quantify.Repository.Enum.Test.Assets\Quantify.Repository.Enum.Test.Assets.csproj", "{5779979B-6042-4A59-A41E-FD71EDC2ACDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quantify.Repository.Enum.Test.Assets", "test\Quantify.Repository.Enum.Test.Assets\Quantify.Repository.Enum.Test.Assets.csproj", "{5779979B-6042-4A59-A41E-FD71EDC2ACDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

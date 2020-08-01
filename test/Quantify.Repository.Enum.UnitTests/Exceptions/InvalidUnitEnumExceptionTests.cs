@@ -7,7 +7,7 @@ namespace Quantify.Repository.Enum.UnitTests.Exceptions
     public class InvalidUnitEnumExceptionTests
     {
         [TestMethod]
-        public void WHILE_MessageIsNull_WHEN_Instantiating_Message_ArgumentType_THEN_HasDefaultMessage()
+        public void WHEN_Instantiating_Message_ArgumentType_WHILE_MessageIsNull_THEN_HasDefaultMessage()
         {
             // Arrange
             const string message = null;
@@ -24,7 +24,7 @@ namespace Quantify.Repository.Enum.UnitTests.Exceptions
         }
 
         [TestMethod]
-        public void WHILE_ArgumentTypeIsNull_WHEN_Instantiating_Message_ArgumentType_THEN_ArgumentTypeIsNull()
+        public void WHEN_Instantiating_Message_ArgumentType_WHILE_ArgumentTypeIsNull_THEN_ArgumentTypeIsNull()
         {
             // Arrange
             const string expectedMessage = "The unit enum is invalid.";
@@ -39,7 +39,7 @@ namespace Quantify.Repository.Enum.UnitTests.Exceptions
         }
 
         [TestMethod]
-        public void WHILE_MessageIsNull_WHEN_Instantiating_Message_ArgumentType_InnerException_THEN_HasDefaultMessage()
+        public void WHEN_Instantiating_Message_ArgumentType_InnerException_WHILE_MessageIsNull_THEN_HasDefaultMessage()
         {
             // Arrange
             const string message = null;
@@ -57,7 +57,7 @@ namespace Quantify.Repository.Enum.UnitTests.Exceptions
         }
 
         [TestMethod]
-        public void WHILE_ArgumentTypeIsNull_WHEN_Instantiating_Message_ArgumentType_InnerException_THEN_ArgumentTypeIsNull()
+        public void WHEN_Instantiating_Message_ArgumentType_InnerException_WHILE_ArgumentTypeIsNull_THEN_ArgumentTypeIsNull()
         {
             // Arrange
             const string expectedMessage = "The unit enum is invalid.";
@@ -74,7 +74,7 @@ namespace Quantify.Repository.Enum.UnitTests.Exceptions
         }
 
         [TestMethod]
-        public void WHILE_InnerExceptionIsNull_WHEN_Instantiating_Message_ArgumentType_InnerException_THEN_InnerExceptionIsNull()
+        public void WHEN_Instantiating_Message_ArgumentType_InnerException_WHILE_InnerExceptionIsNull_THEN_InnerExceptionIsNull()
         {
             // Arrange
             const string expectedMessage = "The unit enum is invalid.";
