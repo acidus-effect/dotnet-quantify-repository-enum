@@ -64,7 +64,7 @@ namespace Quantify.Repository.Enum.IntegrationTests
         public void WHEN_Instantiating_WHILE_UnitEnumHasErrors_THEN_ThrowException()
         {
             // Act & Assert
-            ExceptionHelpers.ExpectException<InvalidUnitEnumException>(() => EnumUnitRepository<double, TestUnit_MissingAttribute>.CreateInstance());
+            ExceptionHelpers.ExpectException<InvalidUnitEnumException>(() => EnumUnitRepository<double, TestUnit_MultiIssues>.CreateInstance());
         }
     }
 }

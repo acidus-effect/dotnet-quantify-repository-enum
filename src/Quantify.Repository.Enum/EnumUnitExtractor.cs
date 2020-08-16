@@ -21,92 +21,59 @@ namespace Quantify.Repository.Enum
             this.stringValueParser = stringValueParser ?? throw new ArgumentNullException(nameof(stringValueParser));
         }
 
-        public virtual IReadOnlyDictionary<TUnit, TValue> Extract()
+        internal virtual IReadOnlyDictionary<TUnit, TValue> Extract()
         {
-            var enumType = typeof(TUnit);
-            var unitDictionary = new Dictionary<TUnit, TValue>();
-            var extractionStatus = new EnumUnitExtractionStatus();
-           
-            foreach (var unit in System.Enum.GetValues(typeof(TUnit)).OfType<TUnit>())
-            {
-                var attributes = enumType.GetField(System.Enum.GetName(enumType, unit)).GetCustomAttributes(false);
+            var report = CreateExtractionReport();
 
-                var unitAttribute = attributes.FirstOrDefault(attribute => attribute is UnitAttribute) as UnitAttribute;
-                var baseUnitAttribute = attributes.FirstOrDefault(attribute => attribute is BaseUnitAttribute) as BaseUnitAttribute;
+            if (report.HasErrors)
+            {
+                var errorStringBuilder = new StringBuilder();
+
+                errorStringBuilder.AppendLine($"One or more issues were encountered while attempting to process the provided unit enum:");
+                errorStringBuilder.AppendLine();
+                errorStringBuilder.AppendLine(report.CreateFormatedWarningsAndErrorsString());
+                errorStringBuilder.AppendLine();
+                errorStringBuilder.Append("See the documentation for more information.");
+
+                throw new InvalidUnitEnumException(errorStringBuilder.ToString(), typeof(TUnit));
+            }
+
+            return report.ValidUnitEnumValuesDictionary;
+        }
+
+        public EnumUnitExtractionReport<TUnit, TValue> CreateExtractionReport()
+        {
+            var validUnitEnumValuesDictionary = new Dictionary<TUnit, TValue>();
+            var enumValuesMarkedAsBaseUnits = new HashSet<TUnit>();
+            var enumValuesMissingAttributes = new HashSet<TUnit>();
+            var enumValuesWithBothBaseUnitAndValueAttribute = new HashSet<TUnit>();
+
+            var enumType = typeof(TUnit);
+
+            foreach(var enumValue in System.Enum.GetValues(enumType).OfType<TUnit>())
+            {
+                var enumValueAttributes = enumType.GetField(System.Enum.GetName(enumType, enumValue)).GetCustomAttributes(false);
+
+                var unitAttribute = enumValueAttributes.FirstOrDefault(attribute => attribute is UnitAttribute) as UnitAttribute;
+                var baseUnitAttribute = enumValueAttributes.FirstOrDefault(attribute => attribute is BaseUnitAttribute) as BaseUnitAttribute;
 
                 if (unitAttribute == null && baseUnitAttribute == null)
-                    extractionStatus.ValueIsMissingBothAttributes = true;
+                    enumValuesMissingAttributes.Add(enumValue);
 
                 if (unitAttribute != null && baseUnitAttribute != null)
-                    extractionStatus.HasBothAttributes = true;
-
-                if (baseUnitAttribute != null && extractionStatus.HasBaseUnit)
-                    extractionStatus.HasMultipleBaseUnits = true;
-
-                if (baseUnitAttribute != null)
-                    extractionStatus.HasBaseUnit = true;
+                    enumValuesWithBothBaseUnitAndValueAttribute.Add(enumValue);
 
                 if (unitAttribute != null)
-                    unitDictionary[unit] = stringValueParser.Parse(unitAttribute.ConversionValue);
+                    validUnitEnumValuesDictionary[enumValue] = stringValueParser.Parse(unitAttribute.ConversionValue);
 
                 if (baseUnitAttribute != null)
-                    unitDictionary[unit] = stringValueParser.Parse(1.ToString());
+                {
+                    validUnitEnumValuesDictionary[enumValue] = stringValueParser.Parse(1.ToString());
+                    enumValuesMarkedAsBaseUnits.Add(enumValue);
+                }
             }
 
-            if (extractionStatus.HasBaseUnit == false)
-                extractionStatus.IsMissingBaseUnit = true;
-
-            ThrowExceptionIfInvalid(extractionStatus);
-            return new ReadOnlyDictionary<TUnit, TValue>(unitDictionary);
-        }
-
-        private void ThrowExceptionIfInvalid(EnumUnitExtractionStatus extractionStatus)
-        {
-            if (extractionStatus.HasBaseUnit && !extractionStatus.ValueIsMissingBothAttributes && !extractionStatus.HasBothAttributes && !extractionStatus.IsMissingBaseUnit && !extractionStatus.HasMultipleBaseUnits)
-                return;
-
-            var errorTypeCount = 0;
-            var exceptionMessageBuilder = new StringBuilder();
-
-            if (extractionStatus.ValueIsMissingBothAttributes)
-            {
-                errorTypeCount++;
-                exceptionMessageBuilder.AppendLine(" - One or more of the enum values are missing the unit or base unit declaration attribute.");
-            }
-
-            if (extractionStatus.HasBothAttributes)
-            {
-                errorTypeCount++;
-                exceptionMessageBuilder.AppendLine(" - One or more of the units defined in the enum, are defined as both a unit and a base unit.");
-            }
-
-            if (extractionStatus.IsMissingBaseUnit)
-            {
-                errorTypeCount++;
-                exceptionMessageBuilder.AppendLine(" - Non of the units defined in the enum, are defined as the base unit. Exactly one unit must be defined as the base unit.");
-            }
-
-            if (extractionStatus.HasMultipleBaseUnits)
-            {
-                errorTypeCount++;
-                exceptionMessageBuilder.AppendLine(" - Two or more of the units defined in the enum, are defined as the base unit. Exactly one unit must be defined as the base unit.");
-            }
-
-            exceptionMessageBuilder.AppendLine();
-            exceptionMessageBuilder.Append("See the documentation for more information.");
-
-            var exceptionMessage = $"The following {(errorTypeCount > 1 ? "issues were" : "issue was")} encountered while attempting to process the provided unit enum:{Environment.NewLine}{exceptionMessageBuilder.ToString()}";
-
-            throw new InvalidUnitEnumException(exceptionMessage, typeof(TUnit));
-        }
-
-        private class EnumUnitExtractionStatus
-        {
-            public bool HasBaseUnit { get; set; } = false;
-            public bool ValueIsMissingBothAttributes { get; set; } = false;
-            public bool HasBothAttributes { get; set; } = false;
-            public bool IsMissingBaseUnit { get; set; } = false;
-            public bool HasMultipleBaseUnits { get; set; } = false;
+            return new EnumUnitExtractionReport<TUnit, TValue>(validUnitEnumValuesDictionary, enumValuesMarkedAsBaseUnits, enumValuesMissingAttributes, enumValuesWithBothBaseUnitAndValueAttribute);
         }
     }
 }
