@@ -2,11 +2,9 @@
 using Quantify.Repository.Enum.DataAnnotation;
 using Quantify.Repository.Enum.Test.Assets;
 using Quantify.Repository.Enum.ValueParser;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 
 namespace Quantify.Repository.Enum.IntegrationTests
 {

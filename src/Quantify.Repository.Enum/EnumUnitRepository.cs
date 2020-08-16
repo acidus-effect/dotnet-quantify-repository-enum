@@ -12,11 +12,11 @@ namespace Quantify.Repository.Enum
         {
             if (enumUnitExtractor == null)
                 throw new ArgumentNullException(nameof(enumUnitExtractor));
-                
+
             UnitDictionary = enumUnitExtractor.Extract();
         }
 
-        public static EnumUnitRepository<TValue, TUnit>  CreateInstance()
+        public static EnumUnitRepository<TValue, TUnit> CreateInstance()
         {
             var stringValueParserFactory = new StringValueParserFactory<TValue>().Build();
             var enumUnitExtractor = new EnumUnitExtractor<TValue, TUnit>(stringValueParserFactory);

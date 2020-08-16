@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System.Collections.Generic;
-using Quantify.Repository.Enum.ValueParser;
 using Quantify.Repository.Enum.Test.Assets;
+using Quantify.Repository.Enum.ValueParser;
+using System.Collections.Generic;
 
 namespace Quantify.Repository.Enum.UnitTests
 {

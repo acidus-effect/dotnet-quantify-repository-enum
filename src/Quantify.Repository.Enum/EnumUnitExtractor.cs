@@ -3,7 +3,6 @@ using Quantify.Repository.Enum.Validators;
 using Quantify.Repository.Enum.ValueParser;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -11,7 +10,7 @@ namespace Quantify.Repository.Enum
 {
     internal class EnumUnitExtractor<TValue, TUnit> where TUnit : struct, IConvertible
     {
-        private readonly StringValueParser<TValue> stringValueParser; 
+        private readonly StringValueParser<TValue> stringValueParser;
 
         public EnumUnitExtractor(StringValueParser<TValue> stringValueParser)
         {
@@ -50,7 +49,7 @@ namespace Quantify.Repository.Enum
 
             var enumType = typeof(TUnit);
 
-            foreach(var enumValue in System.Enum.GetValues(enumType).OfType<TUnit>())
+            foreach (var enumValue in System.Enum.GetValues(enumType).OfType<TUnit>())
             {
                 var enumValueAttributes = enumType.GetField(System.Enum.GetName(enumType, enumValue)).GetCustomAttributes(false);
 
