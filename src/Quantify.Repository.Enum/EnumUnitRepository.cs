@@ -1,32 +1,61 @@
-﻿using Quantify.Repository.Enum.ValueParser;
+﻿using Quantify.Repository.Enum.DataAnnotation;
+using Quantify.Repository.Enum.Validators;
 using System;
-using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
 
 namespace Quantify.Repository.Enum
 {
-    public class EnumUnitRepository<TValue, TUnit> : UnitRepository<TValue, TUnit> where TUnit : struct, IConvertible
+    public class EnumUnitRepository<TUnit> : UnitRepository<TUnit> where TUnit : struct, IConvertible
     {
-        private readonly IReadOnlyDictionary<TUnit, TValue> UnitDictionary;
+        private readonly Type unitEnumType = typeof(TUnit);
+        private readonly TUnit baseUnit;
 
-        internal EnumUnitRepository(EnumUnitExtractor<TValue, TUnit> enumUnitExtractor)
+        public EnumUnitRepository()
         {
-            if (enumUnitExtractor == null)
-                throw new ArgumentNullException(nameof(enumUnitExtractor));
+            if (new GenericEnumParametersValidator().GenericParameterIsEnumType<TUnit>() == false)
+                throw new GenericArgumentException("The generic argument is not valid. Expected an enum.", nameof(TUnit), typeof(TUnit));
 
-            UnitDictionary = enumUnitExtractor.Extract();
+            var baseUnitAttribute = unitEnumType.GetCustomAttribute<BaseUnitAttribute>(false);
+
+            if (baseUnitAttribute == null)
+                throw new InvalidUnitEnumException("The unit enum is missing the base unit attribute. See the documentation for more information.", typeof(TUnit));
+
+            if (System.Enum.GetName(unitEnumType, baseUnitAttribute.BaseUnit) == null)
+                throw new InvalidUnitEnumException("The unit enum base unit attribute is not pointing to a valid value in the enum.", typeof(TUnit));
+
+            baseUnit = (TUnit) baseUnitAttribute.BaseUnit;
         }
 
-        public static EnumUnitRepository<TValue, TUnit> CreateInstance()
+        public double? GetUnitConversionRate(TUnit unit)
         {
-            var stringValueParserFactory = new StringValueParserFactory<TValue>().Build();
-            var enumUnitExtractor = new EnumUnitExtractor<TValue, TUnit>(stringValueParserFactory);
+            if (unit.Equals(baseUnit))
+                return 1;
 
-            return new EnumUnitRepository<TValue, TUnit>(enumUnitExtractor);
+            var unitAttribute = GetUnitAttributeByUnit(unit);
+
+            if (unitAttribute == null)
+                return null;
+
+            return double.TryParse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture, out var value) ? value : (double?)null;
         }
 
-        public UnitData<TValue, TUnit> GetUnit(TUnit unit)
+        public decimal? GetPreciseUnitConversionRate(TUnit unit)
         {
-            return UnitDictionary.TryGetValue(unit, out var value) ? new EnumUnitData<TValue, TUnit>(unit, value) : null;
+            if (unit.Equals(baseUnit))
+                return 1;
+
+            var unitAttribute = GetUnitAttributeByUnit(unit);
+
+            if (unitAttribute == null)
+                return null;
+
+            return decimal.TryParse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture, out var value) ? value : (decimal?)null;
+        }
+
+        private UnitAttribute GetUnitAttributeByUnit(TUnit unit)
+        {
+            return unitEnumType.GetField(System.Enum.GetName(unitEnumType, unit)).GetCustomAttribute<UnitAttribute>(false);
         }
     }
 }

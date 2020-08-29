@@ -2,6 +2,7 @@
 
 namespace Quantify.Repository.Enum.Test.Assets
 {
+    [BaseUnit(TestUnit.Metre)]
     public enum TestUnit
     {
         [Unit("0.000001")]
@@ -12,7 +13,6 @@ namespace Quantify.Repository.Enum.Test.Assets
         Centimetre = 18,
         [Unit("0.1")]
         Decimetre = 19,
-        [BaseUnit]
         Metre = 20,
         [Unit("10")]
         Decametre = 21,

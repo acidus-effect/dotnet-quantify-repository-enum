@@ -2,16 +2,15 @@
 
 namespace Quantify.Repository.Enum.Test.Assets
 {
-    public enum TestUnit_BaseUnitAlsoUnit
+    [BaseUnit(TestUnit_InvalidUnitAttribute.Metre)]
+    public enum TestUnit_InvalidUnitAttribute
     {
         [Unit("0.001")]
         Millimetre = 17,
         [Unit("0.01")]
         Centimetre = 18,
-        [Unit("0.1")]
+        [Unit("Hello, World!")]
         Decimetre = 19,
-        [Unit("1")]
-        [BaseUnit]
         Metre = 20,
         [Unit("10")]
         Decametre = 21,
