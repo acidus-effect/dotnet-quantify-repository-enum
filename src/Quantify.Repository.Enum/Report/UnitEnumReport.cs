@@ -63,7 +63,7 @@ namespace Quantify.Repository.Enum.Report
                 summaryStringBuilder.AppendLine("The following warnings were found while analyzing the provided unit enum:");
                 summaryStringBuilder.AppendLine();
 
-                foreach(var warning in Warnings)
+                foreach (var warning in Warnings)
                     summaryStringBuilder.AppendLine($" - {warning}");
             }
 

@@ -24,7 +24,7 @@ namespace Quantify.Repository.Enum
             if (System.Enum.GetName(unitEnumType, baseUnitAttribute.BaseUnit) == null)
                 throw new InvalidUnitEnumException("The unit enum base unit attribute is not pointing to a valid value in the enum.", typeof(TUnit));
 
-            baseUnit = (TUnit) baseUnitAttribute.BaseUnit;
+            baseUnit = (TUnit)baseUnitAttribute.BaseUnit;
         }
 
         public double? GetUnitConversionRate(TUnit unit)

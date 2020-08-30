@@ -19,7 +19,7 @@ namespace Quantify.Repository.Enum.UnitTests.Report
             bool expectedHasValueMissingUnitAttribute,
             bool expectedHasValueWithInvalidUnitAttribute,
             bool expectedBaseUnitHasUnitAttribute,
-            bool expectedIsMissingBaseUnitAttribute, 
+            bool expectedIsMissingBaseUnitAttribute,
             bool expectedHasInvalidBaseUnitAttribute,
             bool expectedHasWarnings,
             bool expectedHasErrors,

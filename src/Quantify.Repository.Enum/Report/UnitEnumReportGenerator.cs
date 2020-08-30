@@ -37,7 +37,8 @@ namespace Quantify.Repository.Enum.Report
                 baseUnitHasUnitAttribute = baseUnitHasUnitAttribute || (unitIsBaseUnit && unitAttribute != null);
                 hasValueMissingUnitAttribute = hasValueMissingUnitAttribute || (unitIsBaseUnit == false && unitAttribute == null);
 
-                if (unitAttribute != null){
+                if (unitAttribute != null)
+                {
                     var canParseToDecimal = decimal.TryParse(unitAttribute.ConversionValue, out var decimalValue);
                     var canParseToDouble = double.TryParse(unitAttribute.ConversionValue, out var doubleValue);
 
