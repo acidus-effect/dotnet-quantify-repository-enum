@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Quantify.Repository.Enum.DataAnnotation;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Quantify.Repository.Enum.DataAnnotation;
 
 namespace Quantify.Repository.Enum.Report
 {
