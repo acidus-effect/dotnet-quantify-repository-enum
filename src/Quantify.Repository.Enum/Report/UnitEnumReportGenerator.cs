@@ -6,8 +6,22 @@ using System.Reflection;
 
 namespace Quantify.Repository.Enum.Report
 {
+    /// <summary>
+    /// Generator class used to create instances of <see cref="UnitEnumReport"/> with results of the analysis of a unit enum.
+    /// </summary>
+    /// <remarks>
+    /// Only critical errors in a unit enum will make the instantiation of a <see cref="UnitRepository{TUnit}" /> fail. Minor things like missing or invalid <see cref="UnitAttribute"/> attributes, will not result in an error, but the enum value will be ignored instead.
+    /// This report generator returns a report with warnings and errors found when analysing a given unit enum. This result can be used in unit tests, to make sure that a unit enum is configurated in the correct way.
+    /// 
+    /// </remarks>
     public class UnitEnumReportGenerator
     {
+        /// <summary>
+        /// Create a analysis report for a given unit enum.
+        /// </summary>
+        /// <typeparam name="TUnit">The unit enum to analyse.</typeparam>
+        /// <returns>A unit enum report with the result of the analysis of the enm referenced in <typeparamref name="TUnit"/>.</returns>
+        /// <exception cref="GenericArgumentException"><typeparamref name="TUnit"/> is not an <code>enum</code>.</exception>
         public UnitEnumReport CreateReport<TUnit>() where TUnit : struct, IConvertible
         {
             if (new GenericEnumParametersValidator().GenericParameterIsEnumType<TUnit>() == false)

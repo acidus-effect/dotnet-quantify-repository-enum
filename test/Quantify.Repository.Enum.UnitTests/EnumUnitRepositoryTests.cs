@@ -1,5 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Quantify.Repository.Enum.DataAnnotation;
 using Quantify.Repository.Enum.Test.Assets;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
 
 namespace Quantify.Repository.Enum.UnitTests
 {
@@ -48,143 +52,173 @@ namespace Quantify.Repository.Enum.UnitTests
         }
 
         [TestMethod]
-        public void WHEN_GettingPerformanceConversionRate_WHILE_UnitIsBaseUnit_UnitHasNoUnitAttribute_THEN_ReturnOne()
+        public void WHEN_GettingPerformanceConversionValue_WHILE_UnitIsBaseUnit_UnitHasNoUnitAttribute_THEN_ReturnOne()
         {
             // Arrange
-            const double expectedConversionRate = 1d;
+            const double expectedConversionValue = 1d;
             var repository = new EnumUnitRepository<TestUnit>();
 
             // Act
-            var actualConversionRate = repository.GetUnitConversionRate(TestUnit.Metre);
+            var actualConversionValue = repository.GetUnitConversionValue(TestUnit.Metre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPerformanceConversionRate_WHILE_UnitIsBaseUnit_UnitHasUnitAttribute_THEN_ReturnOne()
+        public void WHEN_GettingPerformanceConversionValue_WHILE_UnitIsBaseUnit_UnitHasUnitAttribute_THEN_ReturnOne()
         {
             // Arrange
-            const double expectedConversionRate = 1d;
+            const double expectedConversionValue = 1d;
             var repository = new EnumUnitRepository<TestUnit_BaseUnitHasUnitAttribute>();
 
             // Act
-            var actualConversionRate = repository.GetUnitConversionRate(TestUnit_BaseUnitHasUnitAttribute.Metre);
+            var actualConversionValue = repository.GetUnitConversionValue(TestUnit_BaseUnitHasUnitAttribute.Metre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPerformanceConversionRate_WHILE_UnitIsNotBaseUnit_UnitHasUnitAttribute_THEN_ReturnConversionRate()
+        public void WHEN_GettingPerformanceConversionValue_WHILE_UnitIsNotBaseUnit_UnitHasUnitAttribute_THEN_ReturnConversionValue()
         {
             // Arrange
-            const double expectedConversionRate = 0.001d;
+            const double expectedConversionValue = 0.001d;
             var repository = new EnumUnitRepository<TestUnit>();
 
             // Act
-            var actualConversionRate = repository.GetUnitConversionRate(TestUnit.Millimetre);
+            var actualConversionValue = repository.GetUnitConversionValue(TestUnit.Millimetre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPerformanceConversionRate_WHILE_UnitIsNotBaseUnit_UnitHasNoUnitAttribute_THEN_ReturnNull()
+        public void WHEN_GettingPerformanceConversionValue_WHILE_UnitIsNotBaseUnit_UnitHasNoUnitAttribute_THEN_ReturnNull()
         {
             // Arrange
-            double? expectedConversionRate = null;
+            double? expectedConversionValue = null;
             var repository = new EnumUnitRepository<TestUnit_MissingUnitAttribute>();
 
             // Act
-            var actualConversionRate = repository.GetUnitConversionRate(TestUnit_MissingUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetUnitConversionValue(TestUnit_MissingUnitAttribute.Decimetre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPerformanceConversionRate_WHILE_UnitIsNotBaseUnit_UnitHasInvalidUnitAttribute_THEN_ReturnNull()
+        public void WHEN_GettingPerformanceConversionValue_WHILE_UnitIsNotBaseUnit_UnitHasInvalidUnitAttribute_THEN_ReturnNull()
         {
             // Arrange
-            double? expectedConversionRate = null;
+            double? expectedConversionValue = null;
             var repository = new EnumUnitRepository<TestUnit_InvalidUnitAttribute>();
 
             // Act
-            var actualConversionRate = repository.GetUnitConversionRate(TestUnit_InvalidUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetUnitConversionValue(TestUnit_InvalidUnitAttribute.Decimetre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPrecisionConversionRate_WHILE_UnitIsBaseUnit_UnitHasNoUnitAttribute_THEN_ReturnOne()
+        public void WHEN_GettingPrecisionConversionValue_WHILE_UnitIsBaseUnit_UnitHasNoUnitAttribute_THEN_ReturnOne()
         {
             // Arrange
-            const decimal expectedConversionRate = 1m;
+            const decimal expectedConversionValue = 1m;
             var repository = new EnumUnitRepository<TestUnit>();
 
             // Act
-            var actualConversionRate = repository.GetPreciseUnitConversionRate(TestUnit.Metre);
+            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit.Metre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPrecisionConversionRate_WHILE_UnitIsBaseUnit_UnitHasUnitAttribute_THEN_ReturnOne()
+        public void WHEN_GettingPrecisionConversionValue_WHILE_UnitIsBaseUnit_UnitHasUnitAttribute_THEN_ReturnOne()
         {
             // Arrange
-            const decimal expectedConversionRate = 1m;
+            const decimal expectedConversionValue = 1m;
             var repository = new EnumUnitRepository<TestUnit_BaseUnitHasUnitAttribute>();
 
             // Act
-            var actualConversionRate = repository.GetPreciseUnitConversionRate(TestUnit_BaseUnitHasUnitAttribute.Metre);
+            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit_BaseUnitHasUnitAttribute.Metre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPrecisionConversionRate_WHILE_UnitIsNotBaseUnit_UnitHasUnitAttribute_THEN_ReturnConversionRate()
+        public void WHEN_GettingPrecisionConversionValue_WHILE_UnitIsNotBaseUnit_UnitHasUnitAttribute_THEN_ReturnConversionValue()
         {
             // Arrange
-            const decimal expectedConversionRate = 0.001m;
+            const decimal expectedConversionValue = 0.001m;
             var repository = new EnumUnitRepository<TestUnit>();
 
             // Act
-            var actualConversionRate = repository.GetPreciseUnitConversionRate(TestUnit.Millimetre);
+            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit.Millimetre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPrecisionConversionRate_WHILE_UnitIsNotBaseUnit_UnitHasNoUnitAttribute_THEN_ReturnNull()
+        public void WHEN_GettingPrecisionConversionValue_WHILE_UnitIsNotBaseUnit_UnitHasNoUnitAttribute_THEN_ReturnNull()
         {
             // Arrange
-            decimal? expectedConversionRate = null;
+            decimal? expectedConversionValue = null;
             var repository = new EnumUnitRepository<TestUnit_MissingUnitAttribute>();
 
             // Act
-            var actualConversionRate = repository.GetPreciseUnitConversionRate(TestUnit_MissingUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit_MissingUnitAttribute.Decimetre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
         }
 
         [TestMethod]
-        public void WHEN_GettingPrecisionConversionRate_WHILE_UnitIsNotBaseUnit_UnitHasInvalidUnitAttribute_THEN_ReturnNull()
+        public void WHEN_GettingPrecisionConversionValue_WHILE_UnitIsNotBaseUnit_UnitHasInvalidUnitAttribute_THEN_ReturnNull()
         {
             // Arrange
-            decimal? expectedConversionRate = null;
+            decimal? expectedConversionValue = null;
             var repository = new EnumUnitRepository<TestUnit_InvalidUnitAttribute>();
 
             // Act
-            var actualConversionRate = repository.GetPreciseUnitConversionRate(TestUnit_InvalidUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit_InvalidUnitAttribute.Decimetre);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, actualConversionRate);
+            Assert.AreEqual(expectedConversionValue, actualConversionValue);
+        }
+
+        [TestMethod]
+        public void WHEN_ReadingAllUnits_WHILE_UnitEnumIsValid_THEN_AllUnitsHasCorrectValue()
+        {
+            // Arrange
+            var unitType = typeof(TestUnit);
+            var baseUnit = System.Enum.Parse(unitType, System.Enum.GetName(unitType, unitType.GetCustomAttribute<BaseUnitAttribute>(false).BaseUnit));
+
+            // Act
+            var repository = new EnumUnitRepository<TestUnit>();
+
+            // Assert
+            foreach (var unit in System.Enum.GetValues(typeof(TestUnit)).OfType<TestUnit>())
+            {
+                if (unit.Equals(baseUnit))
+                {
+                    Assert.AreEqual(1d, repository.GetUnitConversionValue(unit));
+                    Assert.AreEqual(1m, repository.GetPreciseUnitConversionValue(unit));
+                    continue;
+                }
+
+                var unitAttribute = unitType.GetField(System.Enum.GetName(unitType, unit)).GetCustomAttribute<UnitAttribute>(false);
+
+                var expectedDoubleValue = double.Parse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture);
+                var expectedDecimalValue = decimal.Parse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture);
+
+                Assert.AreEqual(expectedDoubleValue, repository.GetUnitConversionValue(unit));
+                Assert.AreEqual(expectedDecimalValue, repository.GetPreciseUnitConversionValue(unit));
+            }
         }
     }
 }

@@ -11,34 +11,34 @@ namespace Quantify.Repository.Enum.UnitTests.DataAnnotation
         public void WHEN_Instantiating_WHILE_ArgumentsAreValid_THEN_CreateInstance()
         {
             // Arrange
-            const string expectedConversionRate = "123456";
+            const string expectedConversionValue = "123456";
 
             // Act
-            var attribute = new UnitAttribute(expectedConversionRate);
+            var attribute = new UnitAttribute(expectedConversionValue);
 
             // Assert
-            Assert.AreEqual(expectedConversionRate, attribute.ConversionValue);
+            Assert.AreEqual(expectedConversionValue, attribute.ConversionValue);
         }
 
         [TestMethod]
         public void WHEN_Instantiating_WHILE_ArgumentIsNull_THEN_ThrowException()
         {
             // Act & Assert
-            ExceptionHelpers.ExpectArgumentNullException("conversionRate", () => new UnitAttribute(null));
+            ExceptionHelpers.ExpectArgumentNullException("conversionValue", () => new UnitAttribute(null));
         }
 
         [TestMethod]
         public void WHEN_Instantiating_WHILE_ArgumentIsEmpty_THEN_ThrowException()
         {
             // Act & Assert
-            ExceptionHelpers.ExpectArgumentException("conversionRate", () => new UnitAttribute(""));
+            ExceptionHelpers.ExpectArgumentException("conversionValue", () => new UnitAttribute(""));
         }
 
         [TestMethod]
         public void WHEN_Instantiating_WHILE_ArgumentContainsOnlyWhitespaces_THEN_ThrowException()
         {
             // Act & Assert
-            ExceptionHelpers.ExpectArgumentException("conversionRate", () => new UnitAttribute("   "));
+            ExceptionHelpers.ExpectArgumentException("conversionValue", () => new UnitAttribute("   "));
         }
     }
 }

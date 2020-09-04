@@ -27,17 +27,6 @@ namespace Quantify
         }
 
         /// <summary>
-        /// Constructs a new instance of <see cref="InvalidUnitEnumException"/> with the given message and inner exception.
-        /// </summary>
-        /// <param name="message">Message for the exception.</param>
-        /// <param name="enumType">The type of the enum.</param>
-        /// <param name="innerException">Inner exception.</param>
-        public InvalidUnitEnumException(string message, Type enumType, Exception innerException) : base(message ?? DefaultMessage, innerException)
-        {
-            EnumType = enumType;
-        }
-
-        /// <summary>
         /// Constructor provided for serialization purposes.
         /// </summary>
         /// <param name="info">Serialization information</param>
