@@ -20,7 +20,7 @@ namespace Quantify.Repository.Enum
     /// If the base unit value is annotated with the <see cref="UnitAttribute"/> attribute, the speficied conversion value will be ignored, since the base unit always have a conversion value of 1.
     /// </remarks>
     /// <typeparam name="TUnit">The enum type containing unit data.</typeparam>
-    public class EnumUnitRepository<TUnit> : UnitRepository<TUnit> where TUnit : struct, IConvertible
+    public class EnumUnitRepository<TUnit> : UnitRepository<TUnit> where TUnit : struct
     {
         private readonly Type unitEnumType = typeof(TUnit);
         private readonly TUnit baseUnit;
@@ -35,7 +35,7 @@ namespace Quantify.Repository.Enum
             if (new GenericEnumParametersValidator().GenericParameterIsEnumType<TUnit>() == false)
                 throw new GenericArgumentException("The generic argument is not valid. Expected an enum.", nameof(TUnit), typeof(TUnit));
 
-            var baseUnitAttribute = unitEnumType.GetCustomAttribute<BaseUnitAttribute>(false);
+            var baseUnitAttribute = unitEnumType.GetTypeInfo().GetCustomAttribute<BaseUnitAttribute>(false);
 
             if (baseUnitAttribute == null)
                 throw new InvalidUnitEnumException("The unit enum is missing the base unit attribute. See the documentation for more information.", typeof(TUnit));
@@ -47,7 +47,7 @@ namespace Quantify.Repository.Enum
         }
 
         /// <inheritdoc/>
-        public double? GetUnitConversionValue(TUnit unit)
+        public double? GetUnitValueInBaseUnits(TUnit unit)
         {
             if (unit.Equals(baseUnit))
                 return 1;
@@ -61,7 +61,7 @@ namespace Quantify.Repository.Enum
         }
 
         /// <inheritdoc/>
-        public decimal? GetPreciseUnitConversionValue(TUnit unit)
+        public decimal? GetPreciseUnitValueInBaseUnits(TUnit unit)
         {
             if (unit.Equals(baseUnit))
                 return 1;
@@ -76,7 +76,7 @@ namespace Quantify.Repository.Enum
 
         private UnitAttribute GetUnitAttributeByUnit(TUnit unit)
         {
-            return unitEnumType.GetField(System.Enum.GetName(unitEnumType, unit)).GetCustomAttribute<UnitAttribute>(false);
+            return unitEnumType.GetRuntimeField(System.Enum.GetName(unitEnumType, unit)).GetCustomAttribute<UnitAttribute>(false);
         }
     }
 }

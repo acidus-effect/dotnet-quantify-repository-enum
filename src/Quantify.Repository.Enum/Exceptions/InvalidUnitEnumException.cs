@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace Quantify
 {
@@ -24,15 +23,6 @@ namespace Quantify
         public InvalidUnitEnumException(string message, Type enumType) : base(message ?? DefaultMessage)
         {
             EnumType = enumType;
-        }
-
-        /// <summary>
-        /// Constructor provided for serialization purposes.
-        /// </summary>
-        /// <param name="info">Serialization information</param>
-        /// <param name="context">Context</param>
-        protected InvalidUnitEnumException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
         }
     }
 }

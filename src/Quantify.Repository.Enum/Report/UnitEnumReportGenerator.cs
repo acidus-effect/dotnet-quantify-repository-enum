@@ -1,6 +1,5 @@
 ﻿using Quantify.Repository.Enum.DataAnnotation;
 using Quantify.Repository.Enum.Validators;
-using System;
 using System.Linq;
 using System.Reflection;
 
@@ -22,7 +21,7 @@ namespace Quantify.Repository.Enum.Report
         /// <typeparam name="TUnit">The unit enum to analyse.</typeparam>
         /// <returns>A unit enum report with the result of the analysis of the enm referenced in <typeparamref name="TUnit"/>.</returns>
         /// <exception cref="GenericArgumentException"><typeparamref name="TUnit"/> is not an <code>enum</code>.</exception>
-        public UnitEnumReport CreateReport<TUnit>() where TUnit : struct, IConvertible
+        public UnitEnumReport CreateReport<TUnit>() where TUnit : struct
         {
             if (new GenericEnumParametersValidator().GenericParameterIsEnumType<TUnit>() == false)
                 throw new GenericArgumentException("The generic argument is not valid. Expected an enum.", nameof(TUnit), typeof(TUnit));
@@ -35,7 +34,7 @@ namespace Quantify.Repository.Enum.Report
 
             var enumType = typeof(TUnit);
 
-            var baseUnitAttribute = enumType.GetCustomAttribute<BaseUnitAttribute>(false);
+            var baseUnitAttribute = enumType.GetTypeInfo().GetCustomAttribute<BaseUnitAttribute>(false);
             var baseUnitValueName = baseUnitAttribute == null ? null : System.Enum.GetName(enumType, baseUnitAttribute.BaseUnit);
 
             isMissingBaseUnitAttribute = baseUnitAttribute == null;
@@ -43,9 +42,9 @@ namespace Quantify.Repository.Enum.Report
             if (baseUnitAttribute != null)
                 hasInvalidBaseUnitAttribute = baseUnitValueName == null;
 
-            foreach (var unitEnumValue in enumType.GetEnumValues().OfType<TUnit>())
+            foreach (var unitEnumValue in System.Enum.GetValues(enumType).OfType<TUnit>())
             {
-                var unitAttribute = enumType.GetField(System.Enum.GetName(enumType, unitEnumValue)).GetCustomAttribute<UnitAttribute>(false);
+                var unitAttribute = enumType.GetRuntimeField(System.Enum.GetName(enumType, unitEnumValue)).GetCustomAttribute<UnitAttribute>(false);
                 var unitIsBaseUnit = baseUnitValueName == null ? false : unitEnumValue.Equals(System.Enum.Parse(enumType, baseUnitValueName));
 
                 baseUnitHasUnitAttribute = baseUnitHasUnitAttribute || (unitIsBaseUnit && unitAttribute != null);

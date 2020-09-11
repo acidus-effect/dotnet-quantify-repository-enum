@@ -59,7 +59,7 @@ namespace Quantify.Repository.Enum.UnitTests
             var repository = new EnumUnitRepository<TestUnit>();
 
             // Act
-            var actualConversionValue = repository.GetUnitConversionValue(TestUnit.Metre);
+            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit.Metre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -73,7 +73,7 @@ namespace Quantify.Repository.Enum.UnitTests
             var repository = new EnumUnitRepository<TestUnit_BaseUnitHasUnitAttribute>();
 
             // Act
-            var actualConversionValue = repository.GetUnitConversionValue(TestUnit_BaseUnitHasUnitAttribute.Metre);
+            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit_BaseUnitHasUnitAttribute.Metre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -83,11 +83,11 @@ namespace Quantify.Repository.Enum.UnitTests
         public void WHEN_GettingPerformanceConversionValue_WHILE_UnitIsNotBaseUnit_UnitHasUnitAttribute_THEN_ReturnConversionValue()
         {
             // Arrange
-            const double expectedConversionValue = 0.001d;
+            const double expectedConversionValue = 1000d;
             var repository = new EnumUnitRepository<TestUnit>();
 
             // Act
-            var actualConversionValue = repository.GetUnitConversionValue(TestUnit.Millimetre);
+            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit.Millimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -101,7 +101,7 @@ namespace Quantify.Repository.Enum.UnitTests
             var repository = new EnumUnitRepository<TestUnit_MissingUnitAttribute>();
 
             // Act
-            var actualConversionValue = repository.GetUnitConversionValue(TestUnit_MissingUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit_MissingUnitAttribute.Decimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -115,7 +115,7 @@ namespace Quantify.Repository.Enum.UnitTests
             var repository = new EnumUnitRepository<TestUnit_InvalidUnitAttribute>();
 
             // Act
-            var actualConversionValue = repository.GetUnitConversionValue(TestUnit_InvalidUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit_InvalidUnitAttribute.Decimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -129,7 +129,7 @@ namespace Quantify.Repository.Enum.UnitTests
             var repository = new EnumUnitRepository<TestUnit>();
 
             // Act
-            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit.Metre);
+            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit.Metre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -143,7 +143,7 @@ namespace Quantify.Repository.Enum.UnitTests
             var repository = new EnumUnitRepository<TestUnit_BaseUnitHasUnitAttribute>();
 
             // Act
-            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit_BaseUnitHasUnitAttribute.Metre);
+            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit_BaseUnitHasUnitAttribute.Metre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -153,11 +153,11 @@ namespace Quantify.Repository.Enum.UnitTests
         public void WHEN_GettingPrecisionConversionValue_WHILE_UnitIsNotBaseUnit_UnitHasUnitAttribute_THEN_ReturnConversionValue()
         {
             // Arrange
-            const decimal expectedConversionValue = 0.001m;
+            const decimal expectedConversionValue = 1000m;
             var repository = new EnumUnitRepository<TestUnit>();
 
             // Act
-            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit.Millimetre);
+            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit.Millimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -171,7 +171,7 @@ namespace Quantify.Repository.Enum.UnitTests
             var repository = new EnumUnitRepository<TestUnit_MissingUnitAttribute>();
 
             // Act
-            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit_MissingUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit_MissingUnitAttribute.Decimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -185,7 +185,7 @@ namespace Quantify.Repository.Enum.UnitTests
             var repository = new EnumUnitRepository<TestUnit_InvalidUnitAttribute>();
 
             // Act
-            var actualConversionValue = repository.GetPreciseUnitConversionValue(TestUnit_InvalidUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit_InvalidUnitAttribute.Decimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -206,8 +206,8 @@ namespace Quantify.Repository.Enum.UnitTests
             {
                 if (unit.Equals(baseUnit))
                 {
-                    Assert.AreEqual(1d, repository.GetUnitConversionValue(unit));
-                    Assert.AreEqual(1m, repository.GetPreciseUnitConversionValue(unit));
+                    Assert.AreEqual(1d, repository.GetUnitValueInBaseUnits(unit));
+                    Assert.AreEqual(1m, repository.GetPreciseUnitValueInBaseUnits(unit));
                     continue;
                 }
 
@@ -216,8 +216,8 @@ namespace Quantify.Repository.Enum.UnitTests
                 var expectedDoubleValue = double.Parse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture);
                 var expectedDecimalValue = decimal.Parse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture);
 
-                Assert.AreEqual(expectedDoubleValue, repository.GetUnitConversionValue(unit));
-                Assert.AreEqual(expectedDecimalValue, repository.GetPreciseUnitConversionValue(unit));
+                Assert.AreEqual(expectedDoubleValue, repository.GetUnitValueInBaseUnits(unit));
+                Assert.AreEqual(expectedDecimalValue, repository.GetPreciseUnitValueInBaseUnits(unit));
             }
         }
     }

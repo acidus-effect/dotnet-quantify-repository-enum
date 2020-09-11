@@ -1,5 +1,6 @@
 ﻿using Quantify.Repository.Enum.DataAnnotation;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -96,8 +97,8 @@ namespace Quantify.Repository.Enum.Report
             if (hasInvalidBaseUnitAttribute)
                 errors.Add("The value of the base unit attribute is not valid. Please provide the value of the current enum, that will function as the base unit.");
 
-            Warnings = warnings.AsReadOnly();
-            Errors = errors.AsReadOnly();
+            Warnings = new ReadOnlyCollection<string>(warnings);
+            Errors = new ReadOnlyCollection<string>(errors);
         }
 
         /// <summary>

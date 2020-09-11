@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Quantify.Repository.Enum.DataAnnotation
 {
@@ -24,7 +25,7 @@ namespace Quantify.Repository.Enum.DataAnnotation
             if (baseUnit == null)
                 throw new ArgumentNullException(nameof(baseUnit));
 
-            if (baseUnit.GetType().IsEnum == false)
+            if (baseUnit.GetType().GetTypeInfo().IsEnum == false)
                 throw new ArgumentException("The argument must be of the type enum.", nameof(baseUnit));
 
             BaseUnit = baseUnit;
