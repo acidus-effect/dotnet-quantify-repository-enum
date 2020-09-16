@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.2</TargetFramework>
+    <TargetFramework>netstandard1.0</TargetFramework>
     <AssemblyName>Quantify.Repository.Enum</AssemblyName>
     <RootNamespace>Quantify.Repository.Enum</RootNamespace>
-    <Version>0.1.7</Version>
+    <Version>0.1.8</Version>
     <Authors>Michel Gammelgaard</Authors>
     <Company>Acidic Software</Company>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Quantify" Version="0.1.11" />
+    <PackageReference Include="Quantify" Version="0.1.12" />
   </ItemGroup>
 
 </Project>
