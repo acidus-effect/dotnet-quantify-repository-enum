@@ -213,8 +213,8 @@ namespace Quantify.Repository.Enum.UnitTests
 
                 var unitAttribute = unitType.GetField(System.Enum.GetName(unitType, unit)).GetCustomAttribute<UnitAttribute>(false);
 
-                var expectedDoubleValue = double.Parse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture);
-                var expectedDecimalValue = decimal.Parse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture);
+                var expectedDoubleValue = double.Parse(unitAttribute.ValueInBaseUnits, NumberStyles.Any, CultureInfo.InvariantCulture);
+                var expectedDecimalValue = decimal.Parse(unitAttribute.ValueInBaseUnits, NumberStyles.Any, CultureInfo.InvariantCulture);
 
                 Assert.AreEqual(expectedDoubleValue, repository.GetUnitValueInBaseUnits(unit));
                 Assert.AreEqual(expectedDecimalValue, repository.GetPreciseUnitValueInBaseUnits(unit));

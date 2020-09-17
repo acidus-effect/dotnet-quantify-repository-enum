@@ -57,7 +57,7 @@ namespace Quantify.Repository.Enum
             if (unitAttribute == null)
                 return null;
 
-            return double.TryParse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture, out var value) ? value : (double?)null;
+            return double.TryParse(unitAttribute.ValueInBaseUnits, NumberStyles.Any, CultureInfo.InvariantCulture, out var value) ? value : (double?)null;
         }
 
         /// <inheritdoc/>
@@ -71,7 +71,7 @@ namespace Quantify.Repository.Enum
             if (unitAttribute == null)
                 return null;
 
-            return decimal.TryParse(unitAttribute.ConversionValue, NumberStyles.Any, CultureInfo.InvariantCulture, out var value) ? value : (decimal?)null;
+            return decimal.TryParse(unitAttribute.ValueInBaseUnits, NumberStyles.Any, CultureInfo.InvariantCulture, out var value) ? value : (decimal?)null;
         }
 
         private UnitAttribute GetUnitAttributeByUnit(TUnit unit)

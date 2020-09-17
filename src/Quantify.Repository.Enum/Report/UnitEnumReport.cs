@@ -71,30 +71,30 @@ namespace Quantify.Repository.Enum.Report
         /// </summary>
         public bool HasErrors => Errors.Any();
 
-        internal UnitEnumReport(bool hasValueMissingUnitAttribute, bool hasValueWithInvalidUnitAttribute, bool baseUnitHasUnitAttribute, bool isMissingBaseUnitAttribute, bool hasInvalidBaseUnitAttribute)
+        internal UnitEnumReport(bool hasValueMissingUnitAttributeWarning, bool hasValueWithInvalidUnitAttributeWarning, bool baseUnitHasUnitAttributeWarning, bool isMissingBaseUnitAttributeError, bool hasInvalidBaseUnitAttributeError)
         {
-            HasValueMissingUnitAttribute = hasValueMissingUnitAttribute;
-            HasValueWithInvalidUnitAttribute = hasValueWithInvalidUnitAttribute;
-            BaseUnitHasUnitAttribute = baseUnitHasUnitAttribute;
-            IsMissingBaseUnitAttribute = isMissingBaseUnitAttribute;
-            HasInvalidBaseUnitAttribute = hasInvalidBaseUnitAttribute;
+            HasValueMissingUnitAttribute = hasValueMissingUnitAttributeWarning;
+            HasValueWithInvalidUnitAttribute = hasValueWithInvalidUnitAttributeWarning;
+            BaseUnitHasUnitAttribute = baseUnitHasUnitAttributeWarning;
+            IsMissingBaseUnitAttribute = isMissingBaseUnitAttributeError;
+            HasInvalidBaseUnitAttribute = hasInvalidBaseUnitAttributeError;
 
             var warnings = new List<string>();
             var errors = new List<string>();
 
-            if (hasValueMissingUnitAttribute)
+            if (hasValueMissingUnitAttributeWarning)
                 warnings.Add("One or more of the enum values are missing the unit attribute. These values will be ignored and will not be available when creating a quantity and when converting a quantity.");
 
-            if (hasValueWithInvalidUnitAttribute)
+            if (hasValueWithInvalidUnitAttributeWarning)
                 warnings.Add("One or more of the enum values have an invalid conversion value defined in its unit attribute. These values will be ignored and will not be available when creating a quantity and when converting a quantity. Please use only numbers to define conversion values. Use a period as decimal separator and commas as thousands separator.");
 
-            if (baseUnitHasUnitAttribute)
+            if (baseUnitHasUnitAttributeWarning)
                 warnings.Add("The base unit is annotated with a unit attribute. This attribute will be ignored, since the base unit always has a conversion value of 1.");
 
-            if (isMissingBaseUnitAttribute)
+            if (isMissingBaseUnitAttributeError)
                 errors.Add("The unit enum is missing the base unit attribute.");
 
-            if (hasInvalidBaseUnitAttribute)
+            if (hasInvalidBaseUnitAttributeError)
                 errors.Add("The value of the base unit attribute is not valid. Please provide the value of the current enum, that will function as the base unit.");
 
             Warnings = new ReadOnlyCollection<string>(warnings);

@@ -52,8 +52,8 @@ namespace Quantify.Repository.Enum.Report
 
                 if (unitAttribute != null)
                 {
-                    var canParseToDecimal = decimal.TryParse(unitAttribute.ConversionValue, out var decimalValue);
-                    var canParseToDouble = double.TryParse(unitAttribute.ConversionValue, out var doubleValue);
+                    var canParseToDecimal = decimal.TryParse(unitAttribute.ValueInBaseUnits, out var decimalValue);
+                    var canParseToDouble = double.TryParse(unitAttribute.ValueInBaseUnits, out var doubleValue);
 
                     hasValueWithInvalidUnitAttribute = hasValueWithInvalidUnitAttribute || canParseToDecimal == false || canParseToDouble == false;
                 }

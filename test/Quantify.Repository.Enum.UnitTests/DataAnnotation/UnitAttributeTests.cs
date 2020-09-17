@@ -17,28 +17,28 @@ namespace Quantify.Repository.Enum.UnitTests.DataAnnotation
             var attribute = new UnitAttribute(expectedConversionValue);
 
             // Assert
-            Assert.AreEqual(expectedConversionValue, attribute.ConversionValue);
+            Assert.AreEqual(expectedConversionValue, attribute.ValueInBaseUnits);
         }
 
         [TestMethod]
         public void WHEN_Instantiating_WHILE_ArgumentIsNull_THEN_ThrowException()
         {
             // Act & Assert
-            ExceptionHelpers.ExpectArgumentNullException("conversionValue", () => new UnitAttribute(null));
+            ExceptionHelpers.ExpectArgumentNullException("valueInBaseUnits", () => new UnitAttribute(null));
         }
 
         [TestMethod]
         public void WHEN_Instantiating_WHILE_ArgumentIsEmpty_THEN_ThrowException()
         {
             // Act & Assert
-            ExceptionHelpers.ExpectArgumentException("conversionValue", () => new UnitAttribute(""));
+            ExceptionHelpers.ExpectArgumentException("valueInBaseUnits", () => new UnitAttribute(""));
         }
 
         [TestMethod]
         public void WHEN_Instantiating_WHILE_ArgumentContainsOnlyWhitespaces_THEN_ThrowException()
         {
             // Act & Assert
-            ExceptionHelpers.ExpectArgumentException("conversionValue", () => new UnitAttribute("   "));
+            ExceptionHelpers.ExpectArgumentException("valueInBaseUnits", () => new UnitAttribute("   "));
         }
     }
 }
