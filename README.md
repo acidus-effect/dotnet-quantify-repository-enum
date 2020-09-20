@@ -8,6 +8,8 @@ This library contains a complete implementation of a Quantify unit repository ba
 var unitRepository = new EnumUnitRepository<Unit>();
 ```
 
+For more information about the Quantify framework and what features are available, please see [Quantify](https://github.com/acidicsoftware/dotnet-quantify).
+
 ## Unit Enum Structure
 
 To use your unit enum with the [EnumUnitRepository](src/Quantify.Repository.Enum/EnumUnitRepository.cs), your unit enum must be correctly annotated with the [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs) and [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs).
