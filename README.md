@@ -1,4 +1,6 @@
-# Quantify.Repository.Enum
+# Quantify.Repository.Enum ![ci branch parameter](https://github.com/acidicsoftware/dotnet-quantify-repository-enum/workflows/Continuous%20Integration/badge.svg?branch=trunk)
+
+<img src="assets/quantify-repository-enum-logo.svg" height="180px" width="180px" align="center" />
 
 If your custom units have static values and can be represented as an enum, then you don't have to implement your own unit repository.
 
