@@ -5,7 +5,7 @@
     <AssemblyName>Quantify.Repository.Enum</AssemblyName>
     <RootNamespace>Quantify.Repository.Enum</RootNamespace>
     <Version>1.0.0</Version>
-    <Authors>Acidic Software</Authors>
+    <Authors>Michel Gammelgaard</Authors>
     <Company>Acidic Software</Company>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright>2020 Acidic Software</Copyright>
@@ -13,10 +13,11 @@
     <Product>Quantify Enum Based Repository</Product>
     <RepositoryUrl>https://github.com/acidicsoftware/dotnet-quantify-repository-enum</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Quantity;Enum;Repository;Unit;Converting;Converter</PackageTags>
+    <PackageTags>Quantify;Quantity;Enum;Repository;Unit;Converting;Converter</PackageTags>
     <PackageIcon>quantify-repository-enum-logo.png</PackageIcon>
     <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Enum based repository implementation for a Quantify quantity</Description>
   </PropertyGroup>
 
   <ItemGroup>

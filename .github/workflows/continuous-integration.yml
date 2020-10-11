@@ -1,0 +1,21 @@
+name: Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Build & Test
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+      - name: Restore Nuget Packages
+        run: dotnet restore
+      - name: Build Solution
+        run: dotnet build
+      - name: Run Tests
+        run: dotnet test
