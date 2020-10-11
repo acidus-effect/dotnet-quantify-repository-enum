@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Build, Test & Release
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+
+      - name: Restore Nuget Packages
+        run: dotnet restore
+
+      - name: Build Solution
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run Tests
+        run: dotnet test --no-restore --configuration Release
+
+      - name: Pack
+        run: dotnet pack ./src/Quantify/Quantify.csproj --no-restore --configuration Release --no-build --output ./release
+
+      - name: Release
+        run: dotnet nuget push ./release/*.nupkg --api-key $NUGET_API_KEY
