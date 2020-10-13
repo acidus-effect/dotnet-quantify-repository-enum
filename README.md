@@ -2,19 +2,18 @@
 
 <img src="assets/quantify-repository-enum-logo.png" height="180px" width="180px" align="center" />
 
-If your custom units have static values and can be represented as an enum, then you don't have to implement your own unit repository.
+If your unit values are static, universal constants, like length and weight units, and if a solution where unit values are represented by an enum suits your needs, then look no further.
 
-This library contains a complete implementation of a Quantify unit repository based on enums. All you have to do, is to make sure that your unit enum is annotated correctly with the right attributes, and you're good to go.
+This library contains a complete implementation of a Quantify unit repository based on enums. All you have to do is to make sure that your unit enum is annotated with the correct attributes, and you're good to go.
 
 ```csharp
 var unitRepository = new EnumUnitRepository<Unit>();
 ```
 
-For more information about the Quantify framework and what features are available, please see [Quantify](https://github.com/acidicsoftware/dotnet-quantify).
+For more information about the Quantify framework, please see [Quantify](https://github.com/acidicsoftware/dotnet-quantify).
 
 ## Unit Enum Structure
-
-To use your unit enum with the [EnumUnitRepository](src/Quantify.Repository.Enum/EnumUnitRepository.cs), your unit enum must be correctly annotated with the [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs) and [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs).
+To make your unit enum work with the enum repository, your enum must be correctly annotated with [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs) and [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs).
 
 ```csharp
 [BaseUnit(Unit.Metre)]
@@ -48,7 +47,7 @@ public enum Length {
 }
 ```
 
-The enum itself **must** be annotated with the [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs) and the base unit argument must point to a value in the enum. If the enum is not annotated with the attribute or if the base unit argument is not a valid value from the enum, then the instantiation of the repository will fail.
+The enum itself **must** be annotated with [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs) and the base unit argument must point to a value in the enum. If the enum is not annotated with the attribute or if the base unit argument is not a valid value from the annotated enum, then the instantiation of the repository will fail.
 
 Enum values must be annotated with [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs) to be available as usable units. The `valueInBaseUnits` argument describes how many base units the current unit represents. As an example, if the SI unit metre is the base unit, then the SI unit kilometre would have a `valueInBaseUnits` value of 1000, since 1 kilometre represents 1000 base units (that is 1000 metres).
 
@@ -60,7 +59,7 @@ If the enum value designated as the base unit, is also annotated with the [UnitA
 
 ## Unit Enum Report
 
-[UnitEnumReportGenerator](src/Quantify.Repository.Enum/Report/UnitEnumReportGenerator.cs) can be used to generate a report, containing errors and warnings related to the unit enum. This information can be used in unit test, to validate the structure of your custom unit enum.
+[UnitEnumReportGenerator](src/Quantify.Repository.Enum/Report/UnitEnumReportGenerator.cs) can be used to generate a report, containing errors and warnings related to the unit enum. This information can be used in unit tests, to validate the structure of your custom unit enum.
 
 ```csharp
 var reportGenerator = new UnitEnumReportGenerator();
@@ -78,11 +77,11 @@ The generated report has the following properties:
 | Warnings | `IReadOnlyCollection<string>` | Warning descriptions. One for each warning. |
 | HasErrors | `bool` | `true` if one or more errors were found; otherwise `false`. |
 | Errors | `IReadOnlyCollection<string>` | Error descriptions. One for each error. |
-| HasValueMissingUnitAttributeWarning | `bool` | Warning: One or more of the values in the enum are not annotated with the [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs). |
+| HasValueMissingUnitAttributeWarning | `bool` | Warning: One or more of the values in the enum are not annotated with [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs). |
 | HasValueWithInvalidUnitAttributeWarning | `bool` | Warning: One or more of the values in the enum have an invalid [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs). |
-| BaseUnitHasUnitAttributeWarning | `bool` | Warning: The value marked as the base unit is also annotated with the [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs). |
-| IsMissingBaseUnitAttribute | `bool` | Error: The enum is not annotated with the [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs). |
-| HasInvalidBaseUnitAttribute | `bool` | Error: The value referenced as the base unit is not valid. |
+| BaseUnitHasUnitAttributeWarning | `bool` | Warning: The value marked as the base unit is also annotated with [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs). |
+| IsMissingBaseUnitAttribute | `bool` | Error: The enum is not annotated with [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs). |
+| HasInvalidBaseUnitAttribute | `bool` | Error: The value referenced as the base unit in [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs) is not valid. |
 
 You can also create a summary containing all of the warnings and/or errors in a single formatted string:
 
@@ -92,3 +91,7 @@ var report = reportGenerator.CreateReport<Unit>();
 
 var summary = report.CreateSummary();
 ```
+
+*© Copyright 2020 Michel Gammelgaard. All rights reserved. Provided under the [MIT license](LICENSE).*
+
+*Floppy disk icon by Michel Gammelgaard. © Copyright 2020 Michel Gammelgaard. All rights reserved.*
