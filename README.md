@@ -93,5 +93,4 @@ var summary = report.CreateSummary();
 ```
 
 *© Copyright 2020 Michel Gammelgaard. All rights reserved. Provided under the [MIT license](LICENSE).*
-
 *Floppy disk icon by Michel Gammelgaard. © Copyright 2020 Michel Gammelgaard. All rights reserved.*
