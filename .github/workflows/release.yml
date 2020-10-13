@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: windows-latest
     name: Build, Test & Release
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -30,4 +33,4 @@ jobs:
         run: dotnet pack ./src/Quantify/Quantify.csproj --no-restore --configuration Release --no-build --output ./release
 
       - name: Release
-        run: dotnet nuget push ./release/*.nupkg --api-key $NUGET_API_KEY
+        run: dotnet nuget push ./release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }}
