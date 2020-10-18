@@ -4,21 +4,22 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <AssemblyName>Quantify.Repository.Enum</AssemblyName>
     <RootNamespace>Quantify.Repository.Enum</RootNamespace>
-    <Version>1.0.0</Version>
     <Authors>Michel Gammelgaard</Authors>
     <Company>Acidic Software</Company>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright>2020 Acidic Software</Copyright>
-    <PackageLicenseFile></PackageLicenseFile>
     <Product>Quantify Enum Based Repository</Product>
     <RepositoryUrl>https://github.com/acidicsoftware/dotnet-quantify-repository-enum</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Quantify;Quantity;Enum;Repository;Unit;Converting;Converter</PackageTags>
     <PackageIcon>quantify-repository-enum-logo.png</PackageIcon>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Enum based repository implementation for a Quantify quantity</Description>
     <Title>Quantify Enum Repository</Title>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MinVer" Version="2.3.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Quantify" Version="1.0.0" />
   </ItemGroup>
 
