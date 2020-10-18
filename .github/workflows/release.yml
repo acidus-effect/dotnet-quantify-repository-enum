@@ -30,7 +30,7 @@ jobs:
         run: dotnet test --no-restore --configuration Release
 
       - name: Pack
-        run: dotnet pack ./src/Quantify/Quantify.csproj --no-restore --configuration Release --no-build --output ./release
+        run: dotnet pack ./src/Quantify.Repository.Enum/Quantify.Repository.Enum.csproj --no-restore --configuration Release --no-build --output ./release
 
       - name: Release
         run: dotnet nuget push ./release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }}
