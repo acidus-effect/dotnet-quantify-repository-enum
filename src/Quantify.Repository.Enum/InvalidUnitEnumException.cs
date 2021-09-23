@@ -7,8 +7,6 @@ namespace Quantify.Repository.Enum
     /// </summary>
     public class InvalidUnitEnumException : Exception
     {
-        private const string DefaultMessage = "The unit enum is invalid.";
-
         /// <summary>
         /// The type of the enum.
         /// </summary>
@@ -20,7 +18,7 @@ namespace Quantify.Repository.Enum
         /// <param name="message">Message for the exception.</param>
         /// <param name="enumType">The type of the enum.</param>
         /// <param name="argumentName">The name of the argument related to the exception.</param>
-        public InvalidUnitEnumException(string message, Type enumType) : base(message ?? DefaultMessage)
+        public InvalidUnitEnumException(string message, Type enumType) : base(message)
         {
             EnumType = enumType;
         }
