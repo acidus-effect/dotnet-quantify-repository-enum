@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Quantify.Repository.Enum.DataAnnotation;
 using Quantify.Repository.Enum.Test.Assets;
 
 namespace Quantify.Repository.Enum.UnitTests.DataAnnotation

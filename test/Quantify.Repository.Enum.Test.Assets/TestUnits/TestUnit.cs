@@ -1,6 +1,4 @@
-﻿using Quantify.Repository.Enum.DataAnnotation;
-
-namespace Quantify.Repository.Enum.Test.Assets
+﻿namespace Quantify.Repository.Enum.Test.Assets
 {
     [BaseUnit(TestUnit.Metre)]
     public enum TestUnit

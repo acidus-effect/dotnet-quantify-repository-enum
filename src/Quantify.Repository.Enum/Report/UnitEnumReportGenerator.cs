@@ -1,5 +1,4 @@
-﻿using Quantify.Repository.Enum.DataAnnotation;
-using Quantify.Repository.Enum.Validators;
+﻿using Quantify.Repository.Enum.Validators;
 using System.Linq;
 using System.Reflection;
 

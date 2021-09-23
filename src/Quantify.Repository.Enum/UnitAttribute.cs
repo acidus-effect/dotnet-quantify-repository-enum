@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Quantify.Repository.Enum.DataAnnotation
+namespace Quantify.Repository.Enum
 {
     /// <summary>
     /// Specifies that an enum value can be used as a quantity unit.

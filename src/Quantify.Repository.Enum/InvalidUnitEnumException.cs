@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Quantify
+namespace Quantify.Repository.Enum
 {
     /// <summary>
     /// Exception thrown to indicate, that the provided unit enum is invalid.

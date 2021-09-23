@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Quantify.Repository.Enum.DataAnnotation
+namespace Quantify.Repository.Enum
 {
     /// <summary>
     /// Specifies that an enum contains quantity unit values.
