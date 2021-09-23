@@ -1,13 +1,15 @@
 ﻿namespace Quantify.Repository.Enum.Test.Assets
 {
-    [BaseUnit(TestUnit_InvalidUnitAttribute.Metre)]
-    public enum TestUnit_InvalidUnitAttribute
+    [UnitEnum(WrongUnitEnum.TestValue)]
+    public enum TestUnit_InvalidBaseUnit
     {
+        [Unit("0.000001")]
+        Micrometre = 16,
         [Unit("0.001")]
         Millimetre = 17,
         [Unit("0.01")]
         Centimetre = 18,
-        [Unit("Hello, World!")]
+        [Unit("0.1")]
         Decimetre = 19,
         Metre = 20,
         [Unit("10")]
@@ -16,5 +18,10 @@
         Hectometre = 22,
         [Unit("1000")]
         Kilometre = 23
+    }
+
+    public enum WrongUnitEnum
+    {
+        TestValue
     }
 }

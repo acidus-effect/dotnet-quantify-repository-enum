@@ -14,7 +14,7 @@ namespace Quantify.Repository.Enum.UnitTests.Validators
             var genericEnumParametersValidator = new GenericEnumParametersValidator();
 
             // Act
-            var result = genericEnumParametersValidator.GenericParameterIsEnumType<TestUnit>();
+            var result = genericEnumParametersValidator.GenericParameterIsEnumType<TestUnit_Valid>();
 
             // Assert
             Assert.IsTrue(result);

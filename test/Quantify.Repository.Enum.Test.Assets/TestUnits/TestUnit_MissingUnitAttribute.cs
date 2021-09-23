@@ -1,6 +1,6 @@
 ﻿namespace Quantify.Repository.Enum.Test.Assets
 {
-    [BaseUnit(TestUnit_MissingUnitAttribute.Metre)]
+    [UnitEnum(TestUnit_MissingUnitAttribute.Metre)]
     public enum TestUnit_MissingUnitAttribute
     {
         [Unit("0.001")]

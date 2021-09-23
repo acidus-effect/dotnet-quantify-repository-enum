@@ -13,10 +13,10 @@ var unitRepository = new EnumUnitRepository<Unit>();
 For more information about the Quantify framework, please see [Quantify](https://github.com/acidicsoftware/dotnet-quantify).
 
 ## Unit Enum Structure
-To make your unit enum work with the enum repository, your enum must be correctly annotated with [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs) and [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs).
+To make your unit enum work with the enum repository, your enum must be correctly annotated with [UnitEnumAttribute](src/Quantify.Repository.Enum/UnitEnumAttribute.cs) and [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs).
 
 ```csharp
-[BaseUnit(Unit.Metre)]
+[UnitEnum(Unit.Metre)]
 public enum Length {
 
     [Unit("0.001")]
@@ -47,7 +47,7 @@ public enum Length {
 }
 ```
 
-The enum itself **must** be annotated with [BaseUnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/BaseUnitAttribute.cs) and the base unit argument must point to a value in the enum. If the enum is not annotated with the attribute or if the base unit argument is not a valid value from the annotated enum, then the instantiation of the repository will fail.
+The enum itself **must** be annotated with [UnitEnumAttribute](src/Quantify.Repository.Enum/UnitEnumAttribute.cs) and the base unit argument must point to a value in the enum. If the enum is not annotated with the attribute or if the base unit argument is not a valid value from the annotated enum, then the instantiation of the repository will fail.
 
 Enum values must be annotated with [UnitAttribute](src/Quantify.Repository.Enum/DataAnnotation/UnitAttribute.cs) to be available as usable units. The `valueInBaseUnits` argument describes how many base units the current unit represents. As an example, if the SI unit metre is the base unit, then the SI unit kilometre would have a `valueInBaseUnits` value of 1000, since 1 kilometre represents 1000 base units (that is 1000 metres).
 
@@ -92,5 +92,5 @@ var report = reportGenerator.CreateReport<Unit>();
 var summary = report.CreateSummary();
 ```
 
-*© Copyright 2020 Michel Gammelgaard. All rights reserved. Provided under the [MIT license](LICENSE).*
+*© Copyright 2021 Michel Gammelgaard. All rights reserved. Provided under the [MIT license](LICENSE).*
 *Floppy disk icon by Michel Gammelgaard. © Copyright 2020 Michel Gammelgaard. All rights reserved.*

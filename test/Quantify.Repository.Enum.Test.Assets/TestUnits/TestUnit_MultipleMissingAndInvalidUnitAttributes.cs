@@ -1,6 +1,6 @@
 ﻿namespace Quantify.Repository.Enum.Test.Assets.TestUnits
 {
-    [BaseUnit(TestUnit_MultipleMissingAndInvalidUnitAttributes.Metre)]
+    [UnitEnum(TestUnit_MultipleMissingAndInvalidUnitAttributes.Metre)]
     public enum TestUnit_MultipleMissingAndInvalidUnitAttributes
     {
         Millimetre = 17,

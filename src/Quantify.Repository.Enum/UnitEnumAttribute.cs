@@ -7,7 +7,7 @@ namespace Quantify.Repository.Enum
     /// Specifies that an enum contains quantity unit values.
     /// </summary>
     [AttributeUsage(AttributeTargets.Enum, AllowMultiple = false)]
-    public sealed class BaseUnitAttribute : Attribute
+    public sealed class UnitEnumAttribute : Attribute
     {
         /// <summary>
         /// Get the reference to the enum value that represents the base unit.
@@ -15,12 +15,12 @@ namespace Quantify.Repository.Enum
         public object BaseUnit { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseUnitAttribute"/> class with a reference to the enum value that represents the base unit.
+        /// Initializes a new instance of the <see cref="UnitEnumAttribute"/> class with a reference to the enum value that represents the base unit.
         /// </summary>
         /// <param name="baseUnit">The reference to the enum value that represents the base unit</param>
         /// <exception cref="ArgumentNullException"><paramref name="baseUnit"/> is <code>null</code>.</exception>
         /// <exception cref="ArgumentException"><paramref name="baseUnit"/> is not an <code>enum</code>.</exception>
-        public BaseUnitAttribute(object baseUnit)
+        public UnitEnumAttribute(object baseUnit)
         {
             if (baseUnit == null)
                 throw new ArgumentNullException(nameof(baseUnit));

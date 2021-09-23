@@ -27,7 +27,7 @@ namespace Quantify.Repository.Enum.UnitTests
         public void WHEN_Instantiating_WHILE_EnumIsValid_THEN_CreateInstance()
         {
             // Act
-            new EnumUnitRepository<TestUnit>();
+            new EnumUnitRepository<TestUnit_Valid>();
         }
 
         [TestMethod]
@@ -35,8 +35,8 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Act & Assert
             ExceptionHelpers.ExpectException<InvalidUnitEnumException>(
-                () => new EnumUnitRepository<TestUnit_MissingBaseUnit>(),
-                exception => Assert.AreEqual(typeof(TestUnit_MissingBaseUnit), exception.EnumType)
+                () => new EnumUnitRepository<TestUnit_MissingEnumAttribute>(),
+                exception => Assert.AreEqual(typeof(TestUnit_MissingEnumAttribute), exception.EnumType)
             );
         }
 
@@ -45,8 +45,8 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Act & Assert
             ExceptionHelpers.ExpectException<InvalidUnitEnumException>(
-                () => new EnumUnitRepository<TestUnit_InvalidBaseUnitValue>(),
-                exception => Assert.AreEqual(typeof(TestUnit_InvalidBaseUnitValue), exception.EnumType)
+                () => new EnumUnitRepository<TestUnit_InvalidBaseUnit>(),
+                exception => Assert.AreEqual(typeof(TestUnit_InvalidBaseUnit), exception.EnumType)
             );
         }
 
@@ -55,10 +55,10 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             const double expectedConversionValue = 1d;
-            var repository = new EnumUnitRepository<TestUnit>();
+            var repository = new EnumUnitRepository<TestUnit_Valid>();
 
             // Act
-            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit.Metre);
+            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit_Valid.Metre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -83,10 +83,10 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             const double expectedConversionValue = 1000d;
-            var repository = new EnumUnitRepository<TestUnit>();
+            var repository = new EnumUnitRepository<TestUnit_Valid>();
 
             // Act
-            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit.Millimetre);
+            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit_Valid.Millimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -111,10 +111,10 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             double? expectedConversionValue = null;
-            var repository = new EnumUnitRepository<TestUnit_InvalidUnitAttribute>();
+            var repository = new EnumUnitRepository<TestUnit_InvalidUnitValue>();
 
             // Act
-            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit_InvalidUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetUnitValueInBaseUnits(TestUnit_InvalidUnitValue.Decimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -125,10 +125,10 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             const decimal expectedConversionValue = 1m;
-            var repository = new EnumUnitRepository<TestUnit>();
+            var repository = new EnumUnitRepository<TestUnit_Valid>();
 
             // Act
-            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit.Metre);
+            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit_Valid.Metre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -153,10 +153,10 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             const decimal expectedConversionValue = 1000m;
-            var repository = new EnumUnitRepository<TestUnit>();
+            var repository = new EnumUnitRepository<TestUnit_Valid>();
 
             // Act
-            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit.Millimetre);
+            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit_Valid.Millimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -181,10 +181,10 @@ namespace Quantify.Repository.Enum.UnitTests
         {
             // Arrange
             decimal? expectedConversionValue = null;
-            var repository = new EnumUnitRepository<TestUnit_InvalidUnitAttribute>();
+            var repository = new EnumUnitRepository<TestUnit_InvalidUnitValue>();
 
             // Act
-            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit_InvalidUnitAttribute.Decimetre);
+            var actualConversionValue = repository.GetPreciseUnitValueInBaseUnits(TestUnit_InvalidUnitValue.Decimetre);
 
             // Assert
             Assert.AreEqual(expectedConversionValue, actualConversionValue);
@@ -194,14 +194,14 @@ namespace Quantify.Repository.Enum.UnitTests
         public void WHEN_ReadingAllUnits_WHILE_UnitEnumIsValid_THEN_AllUnitsHasCorrectValue()
         {
             // Arrange
-            var unitType = typeof(TestUnit);
-            var baseUnit = System.Enum.Parse(unitType, System.Enum.GetName(unitType, unitType.GetCustomAttribute<BaseUnitAttribute>(false).BaseUnit));
+            var unitType = typeof(TestUnit_Valid);
+            var baseUnit = System.Enum.Parse(unitType, System.Enum.GetName(unitType, unitType.GetCustomAttribute<UnitEnumAttribute>(false).BaseUnit));
 
             // Act
-            var repository = new EnumUnitRepository<TestUnit>();
+            var repository = new EnumUnitRepository<TestUnit_Valid>();
 
             // Assert
-            foreach (var unit in System.Enum.GetValues(typeof(TestUnit)).OfType<TestUnit>())
+            foreach (var unit in System.Enum.GetValues(typeof(TestUnit_Valid)).OfType<TestUnit_Valid>())
             {
                 if (unit.Equals(baseUnit))
                 {

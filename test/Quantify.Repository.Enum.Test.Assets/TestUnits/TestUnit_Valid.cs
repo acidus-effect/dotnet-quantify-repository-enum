@@ -1,7 +1,7 @@
 ﻿namespace Quantify.Repository.Enum.Test.Assets
 {
-    [BaseUnit(TestUnit.Metre)]
-    public enum TestUnit
+    [UnitEnum(TestUnit_Valid.Metre)]
+    public enum TestUnit_Valid
     {
         [Unit("10000")]
         Micrometre = 16,

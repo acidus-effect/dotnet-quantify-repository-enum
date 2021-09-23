@@ -35,18 +35,18 @@ namespace Quantify.Repository.Enum.Report
         public bool BaseUnitHasUnitAttribute { get; }
 
         /// <summary>
-        /// If true, then the unit enum is missing the <see cref="BaseUnitAttribute"/> attribute.
+        /// If true, then the unit enum is missing the <see cref="UnitEnumAttribute"/> attribute.
         /// </summary>
         /// <remarks>
-        /// The fact that the unit enum is missing the <see cref="BaseUnitAttribute"/> attribute is considered a fatal error. The instantiation of <see cref="EnumUnitRepository{TUnit}" /> will fail in this case.
+        /// The fact that the unit enum is missing the <see cref="UnitEnumAttribute"/> attribute is considered a fatal error. The instantiation of <see cref="EnumUnitRepository{TUnit}" /> will fail in this case.
         /// </remarks>
         public bool IsMissingBaseUnitAttribute { get; }
 
         /// <summary>
-        /// If true, then the unit enum is annotated with a <see cref="BaseUnitAttribute"/> attribute with an invalid base unit value. See the documentation for more details.
+        /// If true, then the unit enum is annotated with a <see cref="UnitEnumAttribute"/> attribute with an invalid base unit value. See the documentation for more details.
         /// </summary>
         /// <remarks>
-        /// The fact that the unit enum is annotated with an invalid <see cref="BaseUnitAttribute"/> attribute is considered a fatal error. The instantiation of <see cref="EnumUnitRepository{TUnit}" /> will fail in this case.
+        /// The fact that the unit enum is annotated with an invalid <see cref="UnitEnumAttribute"/> attribute is considered a fatal error. The instantiation of <see cref="EnumUnitRepository{TUnit}" /> will fail in this case.
         /// </remarks>
         public bool HasInvalidBaseUnitAttribute { get; }
 

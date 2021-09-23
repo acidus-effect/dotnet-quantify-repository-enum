@@ -9,8 +9,7 @@ namespace Quantify.Repository.Enum.Report
     /// </summary>
     /// <remarks>
     /// Only critical errors in a unit enum will make the instantiation of a <see cref="UnitRepository{TUnit}" /> fail. Minor things like missing or invalid <see cref="UnitAttribute"/> attributes, will not result in an error, but the enum value will be ignored instead.
-    /// This report generator returns a report with warnings and errors found when analysing a given unit enum. This result can be used in unit tests, to make sure that a unit enum is configurated in the correct way.
-    /// 
+    /// This report generator returns a report with warnings and errors found when analysing a given unit enum. This result can be used in unit tests, to make sure that a unit enum is configured in the correct way.
     /// </remarks>
     public class UnitEnumReportGenerator
     {
@@ -28,18 +27,18 @@ namespace Quantify.Repository.Enum.Report
             var hasValueMissingUnitAttribute = false;
             var hasValueWithInvalidUnitAttribute = false;
             var baseUnitHasUnitAttribute = false;
-            var isMissingBaseUnitAttribute = false;
-            var hasInvalidBaseUnitAttribute = false;
+            var isMissingEnumUnitAttribute = false;
+            var hasInvalidEnumUnitAttribute = false;
 
             var enumType = typeof(TUnit);
 
-            var baseUnitAttribute = enumType.GetTypeInfo().GetCustomAttribute<BaseUnitAttribute>(false);
-            var baseUnitValueName = baseUnitAttribute == null ? null : System.Enum.GetName(enumType, baseUnitAttribute.BaseUnit);
+            var enumUnitAttribute = enumType.GetTypeInfo().GetCustomAttribute<UnitEnumAttribute>(false);
+            var baseUnitValueName = enumUnitAttribute == null ? null : System.Enum.GetName(enumType, enumUnitAttribute.BaseUnit);
 
-            isMissingBaseUnitAttribute = baseUnitAttribute == null;
+            isMissingEnumUnitAttribute = enumUnitAttribute == null;
 
-            if (baseUnitAttribute != null)
-                hasInvalidBaseUnitAttribute = baseUnitValueName == null;
+            if (enumUnitAttribute != null)
+                hasInvalidEnumUnitAttribute = baseUnitValueName == null;
 
             foreach (var unitEnumValue in System.Enum.GetValues(enumType).OfType<TUnit>())
             {
@@ -58,7 +57,7 @@ namespace Quantify.Repository.Enum.Report
                 }
             }
 
-            return new UnitEnumReport(hasValueMissingUnitAttribute, hasValueWithInvalidUnitAttribute, baseUnitHasUnitAttribute, isMissingBaseUnitAttribute, hasInvalidBaseUnitAttribute);
+            return new UnitEnumReport(hasValueMissingUnitAttribute, hasValueWithInvalidUnitAttribute, baseUnitHasUnitAttribute, isMissingEnumUnitAttribute, hasInvalidEnumUnitAttribute);
         }
     }
 }

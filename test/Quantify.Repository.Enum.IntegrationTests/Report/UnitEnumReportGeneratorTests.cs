@@ -15,7 +15,7 @@ namespace Quantify.Repository.Enum.IntegrationTests.Report
             var reportGenerator = new UnitEnumReportGenerator();
 
             // Act
-            var report = reportGenerator.CreateReport<TestUnit>();
+            var report = reportGenerator.CreateReport<TestUnit_Valid>();
 
             // Assert
             Assert.AreEqual(false, report.HasValueMissingUnitAttribute);
@@ -32,7 +32,7 @@ namespace Quantify.Repository.Enum.IntegrationTests.Report
             var reportGenerator = new UnitEnumReportGenerator();
 
             // Act
-            var report = reportGenerator.CreateReport<TestUnit_MissingBaseUnit>();
+            var report = reportGenerator.CreateReport<TestUnit_MissingEnumAttribute>();
 
             // Assert
             Assert.AreEqual(false, report.HasValueMissingUnitAttribute);
@@ -49,7 +49,7 @@ namespace Quantify.Repository.Enum.IntegrationTests.Report
             var reportGenerator = new UnitEnumReportGenerator();
 
             // Act
-            var report = reportGenerator.CreateReport<TestUnit_InvalidBaseUnitValue>();
+            var report = reportGenerator.CreateReport<TestUnit_InvalidBaseUnit>();
 
             // Assert
             Assert.AreEqual(false, report.HasValueMissingUnitAttribute);
@@ -100,7 +100,7 @@ namespace Quantify.Repository.Enum.IntegrationTests.Report
             var reportGenerator = new UnitEnumReportGenerator();
 
             // Act
-            var report = reportGenerator.CreateReport<TestUnit_InvalidUnitAttribute>();
+            var report = reportGenerator.CreateReport<TestUnit_InvalidUnitValue>();
 
             // Assert
             Assert.AreEqual(false, report.HasValueMissingUnitAttribute);
